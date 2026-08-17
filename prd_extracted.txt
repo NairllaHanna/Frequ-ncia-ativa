@@ -1,0 +1,854 @@
+PRODUCT REQUIREMENTS DOCUMENT
+FREQUÊNCIA ATIVA
+Alerta de Falta Diária aos Responsáveis &gt; Sala do Futuro &gt; MVP Web
+Produto: Sala do Futuro – Diário de Classe
+Iniciativa: FREQUÊNCIA ATIVA
+Versão: 1.0 – Especificação funcional consolidada
+Data: 13 de agosto de 2026
+Status: Para validação funcional e refinamento técnico
+Product Owner: Naírlla Hanna Carneiro de Jesus
+Decisão de escopo: o MVP tratará exclusivamente falta diária. Atrasos, disparo automático e confirmação de entrega ou leitura não fazem parte desta versão.
+Controle de versão e aprovações
+Versão
+Data
+Descrição
+Responsável
+Situação
+1.0
+13/08/2026
+Especificação funcional da iniciativa FREQUÊNCIA ATIVA.
+Product Owner
+Em validação
+1. Sumário executivo
+A iniciativa FREQUÊNCIA ATIVA apoiará a atuação preventiva das unidades escolares por meio da identificação qualificada da falta diária e da comunicação tempestiva com os responsáveis.
+A funcionalidade deverá identificar, em tempo real, estudantes com menos de 18 anos na data da ocorrência, matrícula regular vigente no Ensino Fundamental ou no Ensino Médio, nenhuma presença no dia e frequência salva como falta em todas as aulas previstas. A escola poderá consultar a relação consolidada, selecionar o responsável cadastrado na Ficha do Aluno e acionar uma mensagem padronizada no WhatsApp Business institucional.
+A solução também dará visibilidade a estudantes que ainda não podem ser confirmados como faltantes por ausência de lançamento de frequência e a estudantes com Dispensa/Licença vigente. Somente o status “Falta no dia” habilitará o acionamento do WhatsApp.
+A escola terá cinco dias letivos, contados a partir da ocorrência, para realizar o acionamento. O sistema registrará o clique e o classificará como “WhatsApp acionado”, sem afirmar que a mensagem foi enviada, entregue ou lida.
+2. Contexto e problema
+As unidades escolares já registram a frequência no Diário de Classe, porém a identificação dos estudantes ausentes durante todo o dia e a comunicação com seus responsáveis dependem de consulta manual aos registros, localização do contato na Ficha do Aluno e abertura individual do WhatsApp da escola. Esse processo aumenta o esforço operacional, reduz a tempestividade da atuação e dificulta a rastreabilidade institucional.
+O MVP utiliza exclusivamente fontes oficiais: Diário de Classe para frequência, Ficha do Aluno para responsáveis e telefones e Dispensa/Licença para situações vigentes que afastem a classificação de falta.
+3. Visão do produto
+Visão: permitir que a escola identifique rapidamente estudantes sem presença em todas as aulas do dia e inicie uma comunicação acolhedora, padronizada, segura e auditável com o responsável.
+3.1 Objetivo geral
+Disponibilizar aos perfis autorizados uma relação diária e consolidada dos estudantes elegíveis ao alerta de falta, com atualização em tempo real e acionamento individual ou em lote por meio do WhatsApp Business institucional da unidade escolar.
+3.2 Objetivos específicos
+Reduzir o esforço necessário para identificar estudantes ausentes durante todo o dia.
+Evitar que ausência de lançamento do professor seja interpretada como falta do estudante.
+Utilizar somente dados provenientes das fontes oficiais da Secretaria da Educação.
+Padronizar a comunicação com os responsáveis em linguagem humana e acolhedora.
+Oferecer rastreabilidade sobre os acionamentos realizados pela escola.
+Preservar sigilo, perfis de acesso e regras de proteção de dados.
+3.3 Indicadores de sucesso
+Indicador
+Definição
+Leitura esperada
+Cobertura de identificação
+Percentual de ocorrências elegíveis corretamente apresentadas.
+Acompanhar consistência da regra de falta diária.
+Taxa de acionamento
+Ocorrências com WhatsApp acionado ÷ ocorrências elegíveis dentro do prazo.
+Medir adesão das escolas, não entrega da mensagem.
+Tempo até o acionamento
+Intervalo entre a data da falta e o primeiro acionamento.
+Avaliar tempestividade da atuação.
+Pendência de frequência
+Quantidade de estudantes com status Sem lançamento de frequência.
+Sinalizar lacunas operacionais do Diário de Classe.
+Contato inelegível
+Quantidade de ocorrências sem responsável com celular válido.
+Apoiar melhoria cadastral.
+4. Escopo do MVP
+4.1 Incluído no escopo
+Aplicação Web na Sala do Futuro, integrada ao Diário de Classe.
+Matrículas regulares vigentes do Ensino Fundamental e do Ensino Médio.
+Estudantes com menos de 18 anos na data da ocorrência, conforme data de nascimento da Ficha do Aluno.
+Todas as aulas previstas na grade aplicável ao estudante, incluindo componentes regulares, aulas temáticas, eletivas, itinerários formativos, projetos curriculares e agrupamentos específicos.
+Apuração por estudante, matrícula regular, turma e data.
+Status Falta no dia, Sem lançamento de frequência e Dispensa/Licença.
+Consulta consolidada por escola, sem exigência de filtro prévio por turma ou disciplina.
+Acionamento individual e acionamento em lote, sempre iniciado por usuário autorizado.
+Mensagem institucional padronizada e não editável.
+Prazo de cinco dias letivos para acionamento.
+Reversão do status de acionamento em até cinco minutos, sem cancelamento da mensagem no WhatsApp.
+Histórico, logs e exportação dos dados acessíveis ao perfil autorizado.
+4.2 Fora do escopo
+Identificação, contabilização ou comunicação de atraso.
+Projetos extracurriculares que não integrem a grade da matrícula regular.
+Matrículas não vigentes ou não regulares.
+Estudantes que já tenham completado 18 anos na data da ocorrência.
+Importação de frequência, responsáveis ou telefones por planilha.
+Edição de responsável ou telefone nesta funcionalidade.
+Disparo automático de mensagens sem ação da escola.
+Integração, neste MVP, com a API oficial do WhatsApp para confirmação de envio, entrega ou leitura.
+Comunicação com mais de um responsável para a mesma ocorrência por meio do lote.
+Prorrogação manual do prazo de acionamento.
+Justificativa para retirada da planilha: o Diário de Classe e a Ficha do Aluno são as fontes oficiais. Uma planilha criaria uma fonte paralela, sujeita a divergências, duplicidades, dados desatualizados, perda de rastreabilidade e maior risco de exposição de dados pessoais.
+5. Usuários, perfis e permissões
+A funcionalidade será disponibilizada a usuários com vínculo ativo na unidade escolar e com responsabilidade pela frequência institucional.
+Perfil
+Consultar
+Acionar
+Lote
+Exportar
+Histórico
+GOE
+Sim
+Sim
+Sim
+Sim
+Sim
+AOE
+Sim
+Sim
+Sim
+Sim
+Sim
+Diretor
+Sim
+Sim
+Sim
+Sim
+Sim
+Professor
+Não no MVP
+Não
+Não
+Não
+Não
+Demais perfis
+Conforme parametrização futura
+Não no MVP
+Não no MVP
+Não no MVP
+Não no MVP
+Professores e demais perfis autorizados no Diário de Classe continuam aptos a salvar a frequência. Essa permissão não implica acesso ao módulo de alerta.
+6. Fontes de dados e integrações
+Fonte
+Dados consumidos
+Regra de autoridade
+Diário de Classe
+Aulas previstas, lançamentos salvos de presença e falta, usuário e data/hora do lançamento.
+Fonte oficial para apuração da frequência.
+Matrícula/Coleta
+Vigência, matrícula regular, turma, turno, tipo de ensino e situação do estudante.
+Fonte oficial para elegibilidade e vínculo.
+Ficha do Aluno – Identificação
+Data de nascimento do estudante.
+Fonte oficial para cálculo da idade na data da ocorrência.
+Grade Horária
+Aulas e componentes previstos para estudante, turma, agrupamentos e data.
+Define o universo de aulas a validar.
+Dispensa/Licença
+Tipo, período de vigência e abrangência da situação.
+Prevalece sobre a classificação de falta no período aplicável.
+Ficha do Aluno – Responsáveis
+Nome, vínculo, indicação de responsabilidade e telefones.
+Fonte única para contatos; sem edição local.
+Calendário Escolar
+Dias letivos, feriados, recessos e suspensões.
+Fonte para contagem do prazo de cinco dias letivos.
+Log da Sala do Futuro
+Usuário, perfil, escola, data, hora e ação.
+Fonte de auditoria da funcionalidade.
+7. Conceito funcional e regras de classificação
+Regra de entrada: antes da classificação acadêmica, o sistema validará a elegibilidade etária. Somente estudantes com menos de 18 anos na data da ocorrência seguirão para a apuração dos status.
+7.1 Unidade de apuração
+A ocorrência será única por estudante + matrícula regular + turma + data. As faltas registradas nas diferentes aulas serão consolidadas em uma única ocorrência diária.
+7.2 Universo de aulas
+Serão consideradas todas as aulas previstas e aplicáveis ao estudante na data, inclusive aulas temáticas, eletivas, itinerários formativos, projetos curriculares e componentes em agrupamentos específicos. Projetos extracurriculares serão excluídos.
+Aula sem professor não será automaticamente desconsiderada: outro usuário autorizado deverá realizar o lançamento. Enquanto não houver frequência salva, o estudante ficará no status Sem lançamento de frequência. Somente aulas formalmente canceladas ou desconsideradas no Diário de Classe sairão do universo de apuração.
+7.3 Hierarquia dos status acadêmicos
+Prioridade
+Status
+Condição
+Alerta
+1
+Dispensa/Licença
+Existe Dispensa/Licença vigente e aplicável na data.
+Desabilitado
+2
+Falta no dia
+Todas as aulas previstas têm falta salva; não existe presença nem aula sem lançamento.
+Habilitado
+3
+Sem lançamento de frequência
+Não existe presença e pelo menos uma aula prevista está sem frequência salva.
+Desabilitado
+—
+Não exibir
+Existe pelo menos uma presença no dia e não existe Dispensa/Licença vigente.
+Não aplicável
+7.4 Matriz de decisão
+DL vigente
+Presença
+Todas as faltas salvas
+Há aula sem lançamento
+Resultado
+Sim
+Qualquer
+Qualquer
+Qualquer
+Dispensa/Licença
+Não
+Sim
+Não se aplica
+Qualquer
+Não exibir
+Não
+Não
+Sim
+Não
+Falta no dia
+Não
+Não
+Não
+Sim
+Sem lançamento de frequência
+Não
+Não
+Não
+Não
+Sem lançamento de frequência
+7.5 Fórmula funcional
+Falta no dia = idade inferior a 18 anos na data da ocorrência ∧ matrícula regular vigente ∧ todas as aulas previstas com falta salva ∧ nenhuma presença ∧ nenhuma aula sem lançamento ∧ nenhuma Dispensa/Licença vigente e aplicável.
+8. Regras de negócio
+RN-001 — Elegibilidade do estudante
+Somente estudantes que ainda não tenham completado 18 anos na data da ocorrência e possuam matrícula regular vigente no Ensino Fundamental ou no Ensino Médio poderão compor a relação. A idade será calculada pela data de nascimento da Ficha do Aluno, considerando dia, mês e ano em relação à data da ocorrência. Estudantes com 18 anos completos ou mais não serão exibidos, contabilizados nos indicadores nem incluídos em exportações. As aulas serão consideradas apenas dentro da vigência do vínculo com a turma.
+RN-002 — Aulas consideradas
+A apuração abrangerá todas as aulas previstas e aplicáveis ao estudante na data, inclusive componentes em agrupamentos específicos. Aulas formalmente canceladas serão desconsideradas; aula sem professor permanecerá pendente de lançamento.
+RN-003 — Confirmação da falta diária
+O estudante será classificado como Falta no dia somente se possuir falta salva em todas as aulas previstas e nenhuma presença na data.
+RN-004 — Frequência incompleta
+Se não houver presença e existir pelo menos uma aula sem frequência salva, o estudante será classificado como Sem lançamento de frequência e não poderá receber alerta.
+RN-005 — Existência de presença
+O estudante com pelo menos uma presença no dia não será exibido na relação de ausência, salvo se existir Dispensa/Licença vigente que deva ser apresentada para controle institucional.
+RN-006 — Dispensa/Licença
+O sistema consultará Dispensa/Licença. Havendo situação vigente e aplicável à data, o estudante não será considerado faltante e será exibido com o nome da situação, como Licença médica.
+RN-007 — Consolidação
+Cada estudante terá no máximo uma ocorrência por matrícula regular, turma e data, independentemente da quantidade de aulas com falta.
+RN-008 — Atualização em tempo real
+Ao salvar um novo lançamento ou uma correção de frequência no Diário de Classe, o relatório deverá consumir a alteração e recalcular automaticamente a situação do estudante em tempo real, sem depender de processamento em lote ou atualização manual. A classificação também será recalculada após exclusão de frequência, alteração de matrícula, grade, cancelamento formal de aula, Dispensa/Licença ou correção da data de nascimento. Em todos os casos, a idade será aferida na data da ocorrência.
+RN-009 — Fontes oficiais
+Frequência, matrícula, grade, data de nascimento, contatos e Dispensa/Licença serão consumidos exclusivamente dos sistemas oficiais. Não haverá importação por planilha.
+RN-010 — Responsáveis
+Os contatos serão obtidos da aba Responsáveis da Ficha do Aluno. A linha do estudante permanecerá única e poderá exibir até três contatos, preenchidos conforme a hierarquia definida. Não haverá edição de responsável ou telefone nesta funcionalidade.
+RN-011 — Hierarquia dos contatos
+A ordem obrigatória será: Mãe; Pai; Guardião; Tutor; Avó; Avô; Madrasta; Padrasto; Irmã; Irmão; Tia; Tio; Cônjuge; Outros. O sistema percorrerá os responsáveis nessa ordem e preencherá Telefone 1, Telefone 2 e Telefone 3 exclusivamente com números cadastrados na aba Responsáveis da Ficha do Aluno e categorizados como “Celular Principal”. Se houver apenas um contato elegível, somente Telefone 1 será preenchido; os demais permanecerão vazios.
+RN-012 — Padrão de telefone
+Será considerado elegível exclusivamente o número categorizado como “Celular Principal” na aba Responsáveis da Ficha do Aluno e registrado no padrão brasileiro com DDD de dois dígitos e celular de nove dígitos. O número será normalizado para o padrão internacional E.164 do Brasil: +55 + DDD + número, totalizando 13 dígitos após o sinal de adição, por exemplo +5511999999999. A interface exibirá +55 (11) 99999-9999, com mascaramento parcial quando exigido pelas regras de privacidade. Telefones fixos, celulares secundários e números de outras categorias não serão exibidos nem habilitarão o acionamento. Sem integração oficial com o WhatsApp, a existência de uma conta associada ao número somente poderá ser confirmada pelo próprio canal no momento da abertura.
+RN-013 — Mensagem
+A mensagem será padronizada, não editável e preencherá nome do responsável, estudante, escola e data. Não incluirá RA, turma, Dispensa/Licença ou outro dado sensível.
+RN-014 — Prazo
+A escola terá cinco dias letivos, incluindo a data da ocorrência como primeiro dia, para acionar o alerta. A contagem seguirá o calendário escolar da unidade.
+RN-015 — Acionamento
+Somente ocorrências Falta no dia, dentro do prazo, com ao menos um Celular Principal válido e ainda pendentes poderão ser acionadas individualmente ou em lote.
+RN-016 — Semântica do status
+A abertura do WhatsApp será registrada como WhatsApp acionado. O sistema não afirmará envio, entrega ou leitura sem retorno técnico oficial do WhatsApp.
+RN-017 — Prevenção de duplicidade
+Após o acionamento, a ocorrência ficará bloqueada para novo acionamento. A escola poderá marcá-la novamente como pendente em até cinco minutos, sem apagar o histórico.
+RN-018 — Alteração posterior
+Se a frequência mudar antes do acionamento, a elegibilidade será recalculada. Se mudar depois, o histórico será preservado e receberá a indicação Frequência alterada após o acionamento.
+RN-019 — Sigilo
+Dados de estudante sob sigilo serão exibidos e exportados somente a perfis autorizados. Perfis sem autorização não poderão inferir a existência da ocorrência.
+RN-020 — WhatsApp institucional
+O link deverá abrir o WhatsApp Business configurado no equipamento e operado com o número institucional da escola. Credenciais e sessão do WhatsApp não serão armazenadas pela Sala do Futuro.
+RN-021 — Ausência ou inconsistência da data de nascimento
+Se a data de nascimento estiver ausente, inválida ou indisponível, o sistema não deverá presumir que o estudante é menor de idade nem permitir o acionamento. O registro será excluído da relação e a inconsistência deverá ser registrada para monitoramento técnico e correção na fonte oficial.
+9. Hierarquia dos responsáveis e contatos
+O sistema deverá consultar os responsáveis cadastrados na Ficha do Aluno e ordenar os contatos conforme a hierarquia abaixo. Até três números categorizados como “Celular Principal” serão exibidos na relação consolidada.
+Ordem
+Categoria
+Critério
+1
+Mãe
+Primeiro vínculo elegível com Celular Principal válido.
+2
+Pai
+Segundo vínculo na ordem de prioridade.
+3
+Guardião
+Terceiro vínculo na ordem de prioridade.
+4
+Tutor
+Quarto vínculo na ordem de prioridade.
+5
+Avó
+Quinto vínculo na ordem de prioridade.
+6
+Avô
+Sexto vínculo na ordem de prioridade.
+7
+Madrasta
+Sétimo vínculo na ordem de prioridade.
+8
+Padrasto
+Oitavo vínculo na ordem de prioridade.
+9
+Irmã
+Nono vínculo na ordem de prioridade.
+10
+Irmão
+Décimo vínculo na ordem de prioridade.
+11
+Tia
+Décimo primeiro vínculo na ordem de prioridade.
+12
+Tio
+Décimo segundo vínculo na ordem de prioridade.
+13
+Cônjuge
+Décimo terceiro vínculo na ordem de prioridade.
+14
+Outros
+Demais vínculos cadastrados.
+O preenchimento ocorrerá da esquerda para a direita: Telefone 1, Telefone 2 e Telefone 3. Quando houver mais de um cadastro na mesma categoria de parentesco, será considerado primeiro o “Celular Principal” atualizado mais recentemente. Números duplicados serão consolidados e exibidos uma única vez. A seleção ou utilização do telefone não altera a Ficha do Aluno.
+10. Mensagem institucional
+Template: Olá, [nome do responsável]! Esperamos que esteja bem.Não identificamos a presença do(a) estudante [nome do estudante] nas aulas do dia [data da ocorrência].Sabemos que imprevistos podem acontecer. Caso precise esclarecer alguma informação, entre em contato com a equipe da [nome da escola]. A ausência também poderá ser justificada pela Sala do Futuro – Responsáveis:https://saladofuturo.educacao.sp.gov.br/login-responsaveis-govConte conosco!Equipe da [nome da escola]
+10.1 Regras do template
+Preenchimento automático e texto não editável no MVP.
+Link da Sala do Futuro – Responsáveis clicável.
+Não incluir RA, turma, telefone, motivo de Dispensa/Licença ou dados sensíveis.
+Não usar linguagem punitiva nem afirmar que a mensagem foi automaticamente enviada.
+A mensagem somente será disponibilizada para Falta no dia.
+11. Fluxos funcionais
+11.1 Consulta e classificação
+Usuário acessa Sala do Futuro &gt; Diário de Classe &gt; Relatórios &gt; Frequência Ativa.
+Sistema identifica escola e perfil pelo contexto autenticado.
+Tela abre com a data atual e relação consolidada, sem filtro obrigatório.
+Sistema consulta matrícula, grade, frequência e Dispensa/Licença e permanece sincronizado com os lançamentos salvos no Diário de Classe.
+Sistema classifica cada estudante elegível e apresenta apenas os status definidos.
+Usuário pode trocar a data por uma das datas ainda dentro dos cinco dias letivos ou consultar o histórico.
+11.2 Acionamento individual
+Usuário seleciona Acionar alerta de falta na linha elegível.
+Sistema revalida idade na data da ocorrência, status, prazo, telefone, sigilo e duplicidade.
+Modal apresenta até três contatos elegíveis, ordenados pela hierarquia, e a prévia da mensagem.
+Usuário confirma em Abrir WhatsApp.
+Sistema registra o acionamento no log e abre a conversa com telefone e texto preenchidos.
+Ocorrência recebe status WhatsApp acionado e inicia janela de reversão de cinco minutos.
+11.3 Acionamento em lote
+Usuário seleciona linhas elegíveis por “checkbox” ou “Selecionar” elegíveis da página.
+Ação Acionar em lote informa quantos registros serão processados e quais foram ignorados.
+Sistema revalida cada ocorrência imediatamente antes do processamento.
+Painel de progresso apresenta um contato por vez com a ação Abrir WhatsApp.
+Após cada abertura, o sistema marca a ocorrência como WhatsApp acionado e libera Próximo contato.
+O lote termina com resumo de acionados, ignorados, cancelados e falhas.
+Restrição técnica: o lote é uma sequência assistida, não um disparo automático. Navegadores e o WhatsApp podem exigir confirmação a cada conversa.
+11.4 Reversão em cinco minutos
+Após o acionamento, a linha exibe “Desfazer” acionamento por cinco minutos.
+Ao selecionar, o sistema apresenta confirmação explícita.
+A ocorrência volta a Pendente e pode ser acionada novamente se continuar elegível e dentro do prazo.
+O acionamento original e a reversão permanecem no histórico.
+Mensagem de confirmação: “Esta ação não cancela uma mensagem enviada pelo WhatsApp. O alerta será apenas marcado como pendente novamente na Sala do Futuro.”
+11.5 Alteração posterior da frequência
+Antes do acionamento: a linha muda ou deixa de ser exibida conforme a nova classificação.
+Depois do acionamento: o histórico é mantido e marcado como Frequência alterada após o acionamento.
+A alteração não gera contato automático de correção com o responsável.
+12. Especificação das telas
+Princípio de UX: a escola deve visualizar o cenário consolidado imediatamente. Turma e disciplina não serão filtros obrigatórios para carregar a relação.
+12.1 Tela 1 — Frequência Ativa
+Caminho: Sala do Futuro &gt; Diário de Classe &gt; Relatórios &gt; Frequência Ativa.
+A. Cabeçalho
+Elemento
+Especificação
+Título
+FREQUÊNCIA ATIVA
+Texto de apoio
+Consulte estudantes sem presença no dia e acione o responsável pelo WhatsApp Business da escola.
+Contexto
+Nome da escola, ano letivo e perfil autenticado; somente leitura.
+Data de referência
+Preenchida com o dia atual. Permite selecionar outras datas e sinaliza se estão dentro do prazo de cinco dias letivos.
+Atualização
+Indicador “Atualizado em dd/mm/aaaa às hh:mm:ss”. A relação deverá se atualizar automaticamente quando um lançamento ou uma correção de frequência for salvo. O botão Atualizar poderá ser mantido como contingência.
+Ações
+Exportar e Consultar histórico.
+B. Resumo do dia
+Exibir quatro cards informativos, clicáveis apenas como filtro rápido opcional:
+Card
+Conteúdo
+Cor semântica sugerida
+Falta no dia
+Quantidade elegível para alerta.
+Vermelho suave
+Sem lançamento
+Quantidade sem frequência completa.
+Amarelo
+Dispensa/Licença
+Quantidade com DL vigente.
+Azul
+WhatsApp acionado
+Quantidade de ocorrências acionadas na data.
+Verde
+C. Ferramentas da relação
+Busca por nome do estudante ou RA.
+Filtro opcional por situação: Todos, Falta no dia, Sem lançamento de frequência e Dispensa/Licença.
+Filtro opcional por situação do acionamento: Pendente, WhatsApp acionado e Prazo expirado.
+Ordenação padrão: Falta no dia pendente; Sem lançamento; Dispensa/Licença; turma; nome do estudante.
+Paginação e seletor de quantidade por página.
+Checkbox habilitado somente para ocorrências elegíveis ao lote.
+D. Grid consolidada
+Coluna
+Conteúdo e comportamento
+Seleção
+Checkbox somente para Falta no dia, dentro do prazo, com “Celular Principal” válido e status Pendente.
+Turma
+Nome/código da turma regular vigente.
+Turno
+Turno da turma.
+Estudante
+Nome social, quando aplicável, respeitando regras vigentes.
+RA + dígito + UF
+Identificação completa no padrão institucional.
+Telefone 1
+Primeiro “Celular Principal” elegível pela hierarquia. Exibir vínculo, nome e número no formato +55 (DD) 9XXXX-XXXX, com mascaramento conforme a política de privacidade.
+Telefone 2
+Segundo “Celular Principal” elegível pela hierarquia. Permanecer vazio quando inexistente.
+Telefone 3
+Terceiro “Celular Principal” elegível pela hierarquia. Permanecer vazio quando inexistente.
+Situação
+Falta no dia; Sem lançamento de frequência; ou nome da Dispensa/Licença.
+Situação do alerta
+Pendente; WhatsApp acionado; Prazo expirado; ou Não aplicável.
+Ação
+Acionar alerta de falta, Desfazer acionamento ou ação desabilitada com motivo.
+E. Regras visuais da ação
+Condição
+Ação apresentada
+Falta no dia + Celular Principal válido + prazo vigente + Pendente
+Botão primário Acionar alerta de falta.
+WhatsApp acionado há menos de cinco minutos
+Status + ação secundária Desfazer acionamento e contador.
+WhatsApp acionado há mais de cinco minutos
+Status; sem novo acionamento.
+Sem lançamento de frequência
+Ação desabilitada; tooltip Frequência incompleta.
+Dispensa/Licença
+Ação desabilitada; tooltip Estudante com [nome da DL].
+Sem Celular Principal válido
+Ação desabilitada; tooltip Atualize o Celular Principal na Ficha do Aluno.
+Prazo expirado
+Ação desabilitada; tooltip Prazo de cinco dias letivos encerrado.
+F. Estados da tela
+Estado
+Comportamento
+Carregando
+Skeleton nos cards e na grid; bloquear ações.
+Sem ocorrências
+“Não há estudantes nas situações acompanhadas para esta data.”
+Erro parcial
+Exibir fonte indisponível, manter dados seguros e oferecer Tentar novamente.
+Sem permissão
+Não exibir dados; orientar solicitação de perfil.
+Dados atualizados
+Toast discreto com data e hora.
+12.2 Tela 2 — Modal Acionar alerta de falta
+Bloco
+Conteúdo
+Cabeçalho
+Acionar alerta de falta + nome do estudante + data da ocorrência.
+Resumo
+Turma, turno e situação Falta no dia. Não exibir informações sensíveis desnecessárias.
+Contatos
+Apresentar até três opções correspondentes a Telefone 1, Telefone 2 e Telefone 3, com vínculo, nome do responsável e telefone.
+Telefone selecionado
+Somente leitura, categorizado como “Celular Principal”, no formato +55 (DD) 9XXXX-XXXX, com indicador Formato válido.
+Prévia
+Mensagem completa em área somente leitura.
+Aviso
+“O sistema registrará a abertura do WhatsApp, mas não confirma envio, entrega ou leitura.”
+Ações
+Cancelar e Abrir WhatsApp.
+12.3 Tela 3 — Painel de acionamento em lote
+Etapa
+Conteúdo
+Confirmação
+Quantidade selecionada, elegíveis e ignorados; lista dos motivos de exclusão.
+Processamento
+Contato atual, posição X de Y, responsável, telefone mascarado e prévia.
+Ações
+Abrir WhatsApp, Pular contato, Cancelar lote e Próximo contato.
+Progresso
+Barra com Acionados, Pulados, Falhas e Restantes.
+Conclusão
+Resumo final e botão Voltar para a relação.
+12.4 Tela 4 — Histórico de acionamentos
+Área
+Especificação
+Filtros
+Período, situação, usuário, turma, estudante/RA e forma individual/lote.
+Grid
+Data da falta, estudante, RA conforme regra de sigilo, turma, contato utilizado, telefone mascarado, usuário, data/hora, forma e resultado.
+Indicadores
+Acionamentos, reversões, frequência alterada depois e prazos expirados.
+Ações
+Exportar e visualizar detalhes do evento.
+12.5 Modal Desfazer acionamento
+Texto: “Esta ação não cancela uma mensagem enviada pelo WhatsApp. O alerta será apenas marcado como pendente novamente na Sala do Futuro. Deseja continuar?”
+Ações: Cancelar e Marcar como pendente. Exibir o tempo restante da janela de cinco minutos.
+13. Inventário de mensagens da interface
+Código
+Situação
+Mensagem
+MSG-001
+Frequência incompleta
+O alerta não está disponível porque existem aulas sem lançamento de frequência.
+MSG-002
+Com presença
+O estudante possui presença registrada na data e não é elegível ao alerta de falta diária.
+MSG-003
+Dispensa/Licença
+Alerta indisponível: estudante com [nome da Dispensa/Licença] vigente na data.
+MSG-004
+Celular Principal indisponível
+Não há “Celular Principal” válido cadastrado para os responsáveis. Atualize o cadastro na Ficha do Aluno.
+MSG-005
+Prazo expirado
+O prazo de cinco dias letivos para acionamento foi encerrado.
+MSG-006
+Acionamento registrado
+WhatsApp acionado em [data] às [hora].
+MSG-007
+Reversão
+O alerta foi marcado como pendente novamente. A mensagem eventualmente enviada não foi cancelada.
+MSG-008
+Alteração posterior
+A frequência foi alterada após o acionamento do WhatsApp.
+MSG-009
+Sem resultados
+Não há estudantes nas situações acompanhadas para esta data.
+MSG-010
+Revalidação
+A situação do estudante foi atualizada e o alerta não está mais disponível.
+MSG-011
+Sigilo
+Você não possui permissão para visualizar este registro.
+MSG-012
+Lote parcial
+[X] contatos foram acionados; [Y] foram ignorados. Consulte o resumo para verificar os motivos.
+14. Requisitos funcionais
+ID
+Requisito
+RF-001
+Carregar automaticamente a escola do vínculo ativo do usuário.
+RF-002
+Exibir a relação consolidada da data atual sem exigir filtro prévio por turma ou disciplina.
+RF-003
+Permitir consulta por data, respeitando o prazo de acionamento e a consulta histórica.
+RF-004
+Calcular a idade do estudante na data da ocorrência, com base na data de nascimento da Ficha do Aluno, e considerar elegíveis somente os estudantes com menos de 18 anos nessa data.
+RF-005
+Identificar matrícula regular vigente do Ensino Fundamental ou Médio.
+RF-006
+Identificar todas as aulas previstas e aplicáveis ao estudante na data.
+RF-007
+Consumir em tempo real os lançamentos e as correções de frequência imediatamente após a confirmação do salvamento no Diário de Classe.
+RF-008
+Classificar Falta no dia somente quando todas as aulas tiverem falta e não existir presença.
+RF-009
+Classificar Sem lançamento de frequência quando não existir presença e houver aula sem frequência salva.
+RF-010
+Consultar Dispensa/Licença e apresentar o nome da situação vigente.
+RF-011
+Não exibir estudante com presença no dia, exceto quando a exibição de DL for aplicável.
+RF-012
+Consolidar uma ocorrência por estudante, matrícula, turma e data.
+RF-013
+Obter responsáveis e telefones exclusivamente da Ficha do Aluno.
+RF-014
+Ordenar os responsáveis pela hierarquia definida e preencher até três contatos distintos nas colunas Telefone 1, Telefone 2 e Telefone 3, considerando exclusivamente números categorizados como “Celular Principal”.
+RF-015
+Validar o “Celular Principal” brasileiro com DDD e nove dígitos e normalizá-lo para o padrão E.164 com o código do país +55.
+RF-016
+Exibir cada telefone no formato brasileiro, com mascaramento conforme a regra de privacidade, e utilizar internamente o número completo no link.
+RF-017
+Gerar mensagem padronizada com campos dinâmicos e link da Sala do Futuro – Responsáveis.
+RF-018
+Revalidar idade, matrícula, frequência, DL, prazo, contato, sigilo e duplicidade imediatamente antes de cada acionamento.
+RF-019
+Abrir conversa no WhatsApp Business com número e mensagem preenchidos.
+RF-020
+Registrar status WhatsApp acionado sem assumir confirmação de envio.
+RF-021
+Permitir seleção e acionamento sequencial em lote de ocorrências elegíveis.
+RF-022
+Bloquear duplicidade após acionamento.
+RF-023
+Permitir reversão para Pendente em até cinco minutos, preservando o histórico.
+RF-024
+Contar cinco dias letivos pelo calendário escolar, incluindo a ocorrência como primeiro dia.
+RF-025
+Desabilitar acionamento após o prazo e manter a ocorrência no histórico.
+RF-026
+Recalcular status quando as fontes oficiais forem alteradas.
+RF-027
+Identificar alteração de frequência posterior ao acionamento.
+RF-028
+Disponibilizar consulta e exportação do histórico aos perfis autorizados.
+RF-029
+Aplicar sigilo e escopo de perfil na tela, no detalhe, no histórico e na exportação.
+RF-030
+Registrar logs de consulta, exportação, acionamento, lote e reversão.
+RF-031
+Apresentar estados de carregamento, vazio, erro parcial e ausência de permissão.
+15. Requisitos não funcionais
+ID
+Categoria
+Requisito
+RNF-001
+Desempenho
+Carregar a relação em até 5 segundos no percentil 95 para o volume regular da unidade.
+RNF-002
+Atualização
+Refletir automaticamente, em tempo real, cada lançamento ou correção de frequência após a confirmação do salvamento no Diário de Classe, sem depender de atualização manual.
+RNF-003
+Segurança
+Exigir autenticação e autorização por perfil e vínculo ativo.
+RNF-004
+Privacidade
+Mascarar telefone e restringir dados sob sigilo em todas as superfícies.
+RNF-005
+Auditoria
+Manter logs imutáveis de ações relevantes com data/hora e usuário.
+RNF-006
+Acessibilidade
+Atender ao padrão institucional de acessibilidade, com navegação por teclado, foco visível e rótulos para leitores de tela.
+RNF-007
+Compatibilidade
+Suportar navegadores homologados pela Sala do Futuro e abertura por deep link ou WhatsApp Web.
+RNF-008
+Resiliência
+Falha em uma integração não poderá classificar indevidamente um estudante como faltante.
+RNF-009
+Observabilidade
+Registrar falhas de integração, latência, volume e taxa de erros sem expor dados pessoais em logs técnicos.
+RNF-010
+Exportação
+Gerar arquivo com identificação do usuário, data/hora e aviso de confidencialidade.
+16. Auditoria, privacidade e retenção
+16.1 Dados mínimos do log
+Data e hora do evento; usuário; perfil; escola; estudante; matrícula; turma e turno.
+Data da falta; status acadêmico; status anterior e novo status do alerta.
+Contato selecionado e referência do telefone utilizado, preferencialmente com persistência mascarada ou tokenizada.
+Forma de acionamento: individual ou lote; posição no lote; resultado técnico da abertura.
+Reversão dentro de cinco minutos e alteração posterior de frequência.
+Consulta de histórico e exportação de dados.
+16.2 Retenção
+A janela de cinco minutos é apenas o prazo para reversão do status e não corresponde à retenção. Os registros de auditoria não serão apagados por essa ação. O prazo definitivo de retenção deverá seguir a política institucional e a tabela de temporalidade aplicável aos dados educacionais e aos logs de acesso.
+16.3 Sigilo e proteção
+Aplicar o mesmo regime de sigilo da Ficha do Aluno.
+Não exibir nem contabilizar registros sigilosos para perfil não autorizado.
+Mascarar o telefone na tela, histórico e exportação; usar o número completo apenas na composição do link.
+Não armazenar sessão, senha ou credenciais do WhatsApp Business.
+Não incluir Dispensa/Licença ou outros dados sensíveis na mensagem ao responsável.
+17. Critérios de aceite
+CA-001 — Falta diária confirmada
+Dado que o estudante possui menos de 18 anos na data da ocorrência, matrícula regular vigente, aulas previstas na data, falta salva em todas elas, nenhuma presença e nenhuma DL vigente; quando a lista for consultada; então deverá aparecer uma única vez com status Falta no dia e ação habilitada, se os demais critérios forem atendidos.
+CA-002 — Existência de presença
+Dado que existe pelo menos uma presença salva na data; quando a relação for atualizada; então o estudante não deverá ser exibido como faltante.
+CA-003 — Frequência incompleta
+Dado que não existe presença e pelo menos uma aula está sem lançamento salvo; quando a lista for consultada; então o estudante deverá aparecer como Sem lançamento de frequência, sem ação de WhatsApp.
+CA-004 — Nenhum lançamento
+Dado que nenhuma aula possui frequência salva; quando a lista for consultada; então o estudante deverá aparecer como Sem lançamento de frequência e nunca como Falta no dia.
+CA-005 — Dispensa/Licença
+Dado que existe DL vigente e aplicável; quando a lista for consultada; então deverá ser exibido o nome da DL e o alerta ficará desabilitado.
+CA-006 — Vigência da matrícula
+Dado que o estudante não possui matrícula regular vigente na data; quando a apuração ocorrer; então ele não deverá compor a relação.
+CA-007 — Projetos extracurriculares
+Dado que o estudante possui vínculo apenas em projeto extracurricular; quando a apuração ocorrer; então esse vínculo não deverá ser considerado.
+CA-008 — Aula sem professor
+Dado que uma aula prevista não possui frequência salva; quando a apuração ocorrer; então a aula deverá gerar Sem lançamento, salvo se estiver formalmente cancelada.
+CA-009 — Cancelamento formal
+Dado que uma aula prevista foi formalmente cancelada; quando a apuração ocorrer; então ela não deverá impedir a classificação das demais aulas.
+CA-010 — Ordem dos contatos
+Dado que existem vários responsáveis; quando a relação for carregada; então Telefone 1, Telefone 2 e Telefone 3 deverão ser preenchidos com os três primeiros números categorizados como “Celular Principal”, segundo a ordem Mãe, Pai, Guardião, Tutor, Avó, Avô, Madrasta, Padrasto, Irmã, Irmão, Tia, Tio, Cônjuge e Outros.
+CA-011 — Quantidade de contatos
+Dado que existe somente um “Celular Principal” válido; quando a linha for exibida; então apenas Telefone 1 será preenchido. Havendo dois, serão preenchidos Telefone 1 e Telefone 2. Nenhum número poderá ser duplicado.
+CA-012 — Seleção do contato
+Dado que há mais de um contato elegível; quando o usuário selecionar Telefone 2 ou Telefone 3; então o link deverá utilizar o contato escolhido sem alterar a Ficha do Aluno.
+CA-013 — Sem Celular Principal válido
+Dado que nenhum responsável possui número categorizado como “Celular Principal” e em formato válido; quando a linha for exibida; então o alerta ficará desabilitado e orientará atualização na Ficha do Aluno.
+CA-014 — Padrão do telefone
+Dado que o “Celular Principal” possui DDD e número celular de nove dígitos; quando for consumido; então deverá ser normalizado para E.164 com +55 e exibido no formato +55 (DD) 9XXXX-XXXX.
+CA-015 — Mensagem
+Dado que o alerta é elegível; quando o modal abrir; então a mensagem deverá estar preenchida com responsável, estudante, escola, data e link, sem edição e sem dados sensíveis.
+CA-016 — Acionamento individual
+Dado que a ocorrência está elegível; quando o usuário confirmar Abrir WhatsApp; então a conversa será aberta e o log registrará WhatsApp acionado.
+CA-017 — Atualização em tempo real
+Dado que um lançamento ou uma correção de frequência foi salvo no Diário de Classe; quando o salvamento for concluído; então o relatório deverá recalcular e refletir automaticamente a nova situação, sem exigir atualização manual.
+CA-018 — Revalidação
+Dado que a frequência mudou após a abertura da tela; quando o usuário tentar acionar; então o sistema deverá revalidar e bloquear a ação se não houver mais elegibilidade.
+CA-019 — Acionamento em lote
+Dado que existem registros selecionados; quando o lote iniciar; então somente os elegíveis serão processados sequencialmente, com resumo dos ignorados.
+CA-020 — Duplicidade
+Dado que a ocorrência já está como WhatsApp acionado; quando houver nova tentativa; então o sistema deverá bloqueá-la, salvo reversão válida.
+CA-021 — Reversão
+Dado que o acionamento ocorreu há menos de cinco minutos; quando o usuário confirmar a reversão; então a ocorrência voltará a Pendente e ambos os eventos permanecerão no histórico.
+CA-022 — Reversão expirada
+Dado que transcorreram mais de cinco minutos; quando a linha for consultada; então Desfazer acionamento não estará disponível.
+CA-023 — Prazo de cinco dias
+Dado que a ocorrência está dentro do quinto dia letivo; quando consultada; então poderá ser acionada. Após o término, a ação ficará desabilitada e o histórico será preservado.
+CA-024 — Alteração posterior
+Dado que o WhatsApp foi acionado e a frequência depois mudou; quando o histórico for consultado; então deverá constar Frequência alterada após o acionamento.
+CA-025 — Sigilo
+Dado que o estudante está sob sigilo; quando um perfil não autorizado acessar; então nenhum dado ou indicador que permita inferir sua ocorrência será exibido ou exportado.
+CA-026 — Exportação
+Dado que o usuário autorizado solicita exportação; quando o arquivo for gerado; então deverá respeitar o escopo, mascaramento e filtros aplicados e registrar a ação em log.
+CA-027 — Falha de integração
+Dado que uma fonte obrigatória está indisponível; quando a apuração ocorrer; então o sistema não deverá classificar o estudante como faltante e deverá sinalizar erro seguro.
+CA-028 — Estudante menor de idade
+Dado que o estudante ainda não completou 18 anos na data da ocorrência; quando a apuração ocorrer; então ele poderá compor a relação, desde que atenda aos demais critérios de elegibilidade.
+CA-029 — Estudante com 18 anos ou mais
+Dado que o estudante possui 18 anos completos ou mais na data da ocorrência; quando a apuração ocorrer; então ele não deverá ser exibido, contabilizado nos indicadores nem incluído nas exportações da Frequência Ativa.
+CA-030 — Aniversário durante o prazo
+Dado que o estudante tinha 17 anos na data da ocorrência e completou 18 anos durante o prazo de cinco dias letivos; quando a ocorrência for consultada ou acionada; então permanecerá elegível, pois a idade deverá ser aferida na data da ocorrência.
+CA-031 — Data de nascimento inconsistente
+Dado que a data de nascimento está ausente, inválida ou indisponível; quando a apuração ocorrer; então o estudante não deverá compor a relação nem ter alerta acionável, e a inconsistência deverá ser registrada para monitoramento técnico.
+18. Dicionário de dados da interface
+Campo
+Origem
+Formato/Regra
+Data de referência
+Calendário escolar
+dd/mm/aaaa; identifica prazo de acionamento.
+Data de nascimento
+Ficha do Aluno
+Campo de processamento não exibido; base para cálculo da idade na data da ocorrência.
+Elegibilidade etária
+Motor de classificação
+Verdadeiro quando a idade na data da ocorrência for inferior a 18 anos; não exibida como dado pessoal na grid.
+Turma
+Matrícula/Coleta
+Turma regular vigente.
+Turno
+Matrícula/Coleta
+Descrição institucional.
+Estudante
+Ficha do Aluno
+Nome social quando aplicável.
+RA + dígito + UF
+Ficha/Matrícula
+Padrão institucional completo.
+Telefone 1
+Ficha do Aluno
+Primeiro “Celular Principal” válido pela hierarquia; formato E.164 no processamento e formato brasileiro na exibição.
+Telefone 2
+Ficha do Aluno
+Segundo “Celular Principal” válido pela hierarquia; vazio quando inexistente.
+Telefone 3
+Ficha do Aluno
+Terceiro “Celular Principal” válido pela hierarquia; vazio quando inexistente.
+Situação
+Motor de classificação
+Falta no dia, Sem lançamento ou nome da DL.
+Situação do alerta
+Módulo de alertas
+Pendente, WhatsApp acionado, Prazo expirado ou Não aplicável.
+Data/hora do acionamento
+Log
+dd/mm/aaaa hh:mm:ss.
+Usuário do acionamento
+Autenticação/Log
+Nome e perfil.
+Forma
+Log
+Individual ou lote.
+19. Relatórios e exportação
+A funcionalidade deverá permitir exportar a visão corrente e o histórico, respeitando escola, período, filtros, perfil e sigilo. O arquivo deverá conter aviso de confidencialidade e identificação do usuário e da data/hora de geração.
+Relatório
+Conteúdo mínimo
+Visão diária
+Data, turma, turno, estudante, RA conforme regra, situação, situação do alerta e até três contatos mascarados.
+Histórico de acionamentos
+Data da falta, data/hora do acionamento, usuário, forma, responsável, reversão, alteração posterior e resultado técnico.
+Indicadores de uso
+Período, escola, turma, ocorrências elegíveis, acionadas, pendentes, expiradas e sem Celular Principal válido.
+20. Riscos e mitigações
+Risco
+Impacto
+Mitigação
+Frequência incompleta
+Falso faltante.
+Nunca classificar sem todas as faltas salvas; usar Sem lançamento.
+Contato desatualizado
+Mensagem ao destinatário incorreto.
+Fonte única na Ficha; sem edição local; indicar pendência cadastral.
+Clique confundido com envio
+Indicador incorreto.
+Usar WhatsApp acionado e explicar limitação.
+Bloqueio de múltiplas janelas
+Lote interrompido.
+Fluxo sequencial assistido, um contato por vez.
+Dados sob sigilo
+Exposição indevida.
+Autorização por perfil, ocultação integral e auditoria.
+DL indisponível
+Classificação indevida.
+Falha segura: não classificar como falta se integração obrigatória falhar.
+Alteração posterior
+Comunicação divergente.
+Preservar histórico e marcar alteração posterior.
+21. Dependências e premissas técnicas
+Disponibilidade de consulta em tempo real às fontes de frequência, matrícula, grade, data de nascimento, Dispensa/Licença, Ficha do Aluno e calendário.
+Disponibilidade do vínculo de parentesco dos responsáveis na Ficha do Aluno para aplicação da hierarquia definida.
+Compatibilidade do link de acionamento com WhatsApp Desktop, WhatsApp Web e aplicativo nos navegadores homologados.
+Conta institucional do WhatsApp Business configurada e operada pela unidade escolar.
+Parametrização de perfis GOE, AOE e Diretor e regras de sigilo disponíveis para consumo.
+Definição institucional do período de retenção dos logs e exportações.
+22. Estratégia de entrega
+Etapa
+Objetivo
+1. Descoberta técnica
+Validar fontes, eventos, regra de DL, hierarquia cadastral e WhatsApp.
+2. UX/UI
+Desenhar tela consolidada, modal individual, lote, histórico e estados de erro.
+3. Motor de classificação
+Implementar idade na data da ocorrência, matrícula, grade, frequência, DL e prazo letivo.
+4. Comunicação
+Implementar contato, template, link, logs, reversão e lote assistido.
+5. Relatórios e segurança
+Exportação, auditoria, sigilo e indicadores.
+6. Piloto
+Validar com escolas de perfis e portes diferentes antes da expansão.
+23. Checklist para desenho das telas
+Tela inicial deve carregar consolidada, sem filtros obrigatórios.
+Separar Situação acadêmica de Situação do alerta.
+Usar cores como apoio, nunca como único identificador.
+Exibir motivo de ação desabilitada em tooltip e texto acessível.
+Manter ação primária somente para Falta no dia elegível.
+Mostrar telefone mascarado em todas as superfícies.
+Permitir selecionar outro responsável apenas no modal.
+Mostrar prévia completa e não editável da mensagem.
+No lote, processar um contato por vez e mostrar progresso.
+Diferenciar Acionado de Enviado em toda a microcópia.
+Exibir contador de cinco minutos para reversão.
+Exibir prazo restante em dias letivos para ocorrências pendentes.
+Desenhar estados: carregando, vazio, erro parcial, sem permissão, sem Celular Principal, prazo expirado e revalidação.
+Garantir navegação por teclado, foco visível e leitura por tecnologia assistiva.
+24. Glossário
+Termo
+Definição
+Falta no dia
+Ausência confirmada em todas as aulas previstas e aplicáveis da data.
+Sem lançamento de frequência
+Não há presença e existe pelo menos uma aula sem frequência salva.
+WhatsApp acionado
+O sistema registrou a abertura do link; não comprova envio, entrega ou leitura.
+Ocorrência
+Registro único por estudante, matrícula regular, turma e data.
+Prazo de acionamento
+Cinco dias letivos, incluindo a data da ocorrência como primeiro dia.
+Reversão
+Retorno do status para Pendente em até cinco minutos, sem cancelamento externo.
+DL
+Dispensa ou Licença vigente e aplicável ao estudante na data.
+Elegibilidade etária
+Condição em que o estudante ainda não completou 18 anos na data da ocorrência.
+25. Pontos para refinamento técnico
+Orientação: os itens abaixo deverão ser detalhados pela equipe técnica durante o refinamento, preservando integralmente as regras de negócio e a experiência definidas neste documento.
+Evento ou consulta que garantirá atualização em tempo real entre as fontes.
+Mapeamento técnico dos vínculos de parentesco cadastrados na Ficha do Aluno.
+Comportamento do link de acionamento por navegador e ambiente homologado.
+Política institucional de retenção dos logs.
+Volume máximo por escola e limite de seleção no lote.
+Formatos de exportação: Excel e/ou PDF.
+Fim do documento.
