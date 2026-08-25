@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="./doc-page.js"></script>
+<style>
+doc-page:not(:defined){visibility:hidden}
+body{margin:0}
+h1,h2,h3,p,li,td,th{font-family:'Inter',sans-serif}
+a{color:#1565d8}
+a:hover{color:#0f4fae}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #c1c9d8;padding:6px 10px;font-size:12.5px;text-align:left;vertical-align:top}
+th{background:#f2f2f2}
+</style>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-bg-color="#f9f9f9">
+<rect width="200" height="200" fill="#f9f9f9"></rect>
+<rect x="55" y="50" width="90" height="110" rx="4" fill="none" stroke="#1565d8" stroke-width="6"></rect>
+<path d="M70 75h60M70 92h60M70 109h40" stroke="#1565d8" stroke-width="5" stroke-linecap="round"></path>
+</svg>
+</template>
+</helmet>
+
+<doc-page margin="0.9in">
+
+<div style="text-align:center;margin-bottom:28px">
+  <div style="font-size:12px;letter-spacing:.08em;color:#55585d;text-transform:uppercase;margin-bottom:6px">Sala do Futuro – Diário de Classe</div>
+  <h1 style="font-size:24px;color:#162f67;margin:0 0 6px">PRD Complementar — Frequência Ativa</h1>
+  <div style="font-size:13px;color:#55585d">Adendo à especificação funcional v1.0 (13/08/2026) · Registra decisões e ajustes tomados durante o protótipo</div>
+</div>
+
+<table style="margin-bottom:20px">
+  <tr><th style="width:22%">Documento base</th><td>FREQUÊNCIA ATIVA — Especificação funcional consolidada, v1.0, 13/08/2026</td></tr>
+  <tr><th>Este adendo</th><td>Consolida divergências e adições identificadas na prototipação da tela de Frequência Ativa</td></tr>
+  <tr><th>Product Owner</th><td>Naírlla Hanna Carneiro de Jesus</td></tr>
+  <tr><th>Status</th><td>Para incorporação ao documento principal</td></tr>
+</table>
+
+<h2 style="font-size:17px;color:#183b56;border-bottom:2px solid #e8f0fb;padding-bottom:6px">1. Divergências de regra de negócio</h2>
+
+<h3 style="font-size:14px;color:#304869">1.1 — Prazo de acionamento (altera RN-014, item 8)</h3>
+<p><strong>PRD original:</strong> "A escola terá cinco dias letivos, contados a partir da ocorrência, para realizar o acionamento."</p>
+<p><strong>Decisão do protótipo:</strong> o prazo passa a ser contado em <strong>5 dias corridos</strong> (data da ocorrência + 5 dias de calendário), sem considerar o calendário escolar nem pular finais de semana.</p>
+<p><strong>Impacto:</strong> RN-014, RF-024, CA-023 e o glossário (item 24, "Prazo de acionamento") devem ser atualizados para "dias corridos". Remove a dependência da fonte "Calendário Escolar" (item 6) para esta contagem específica.</p>
+
+<h3 style="font-size:14px;color:#304869">1.2 — "Sem lançamento de frequência" passa a ser por turma, não por aluno (altera item 7.3, RN-002, RN-004, RF-009)</h3>
+<p><strong>PRD original:</strong> trata "Sem lançamento de frequência" como um status individual do aluno, decorrente de pelo menos uma aula prevista sem frequência salva — permitindo, em tese, que alunos de uma mesma turma tenham situações diferentes num mesmo dia.</p>
+<p><strong>Decisão do protótipo:</strong> como o lançamento de frequência é uma ação feita pela turma inteira, não existe cenário em que parte dos alunos de uma turma tenha situação e parte não tenha. Enquanto o professor não salvar a frequência do dia, <strong>a turma inteira</strong> fica pendente — nenhum aluno dela é exibido na relação individual de alunos.</p>
+<p><strong>Impacto na tela (altera item 12.1):</strong></p>
+<ul>
+  <li>O card de resumo "Sem lançamento" foi renomeado para <strong>"Turmas sem lançamento"</strong> e conta turmas, não alunos.</li>
+  <li>Ao clicar no card, abre-se uma lista dedicada de turmas pendentes (Turma, Turno, Situação), não um filtro da grid de alunos.</li>
+  <li>A grid consolidada de alunos (item 12.1-D) deixa de ter linhas com situação "Sem lançamento" — ela permanece exclusiva para Falta no dia e Dispensa/Licença.</li>
+  <li>O filtro de situação (item 12.1-C) perde a opção "Sem lançamento de frequência".</li>
+</ul>
+<p><strong>Recomendação para o time técnico:</strong> validar se a apuração por turma (em vez de por aula) é aceitável para todos os cenários de grade (ex.: aulas de itinerários formativos com sub-grupos) antes de formalizar esta mudança no motor de classificação (item 7).</p>
+
+<h2 style="font-size:17px;color:#183b56;border-bottom:2px solid #e8f0fb;padding-bottom:6px;margin-top:26px">2. Ajustes de tela (item 12.1)</h2>
+
+<table style="margin-bottom:10px">
+  <tr><th style="width:26%">Item do PRD</th><th style="width:37%">Especificação original</th><th>Ajuste no protótipo</th></tr>
+  <tr>
+    <td>12.1-D, coluna RA</td>
+    <td>"RA + dígito + UF"</td>
+    <td>Implementado com UF fixa "SP" (não há fonte de UF variável no protótipo)</td>
+  </tr>
+  <tr>
+    <td>12.1-D, colunas Telefone 1/2/3</td>
+    <td>Três colunas de telefone na grid consolidada</td>
+    <td>A grid mostra apenas uma coluna "Telefone principal" (Telefone 1); os demais contatos elegíveis (até 3, na ordem de hierarquia do RN-011) só aparecem no modal de acionamento individual, identificados por vínculo e nome</td>
+  </tr>
+  <tr>
+    <td>12.1-C, ordenação</td>
+    <td>"Falta no dia pendente; Sem lançamento; Dispensa/Licença; turma; nome"</td>
+    <td>Ajustado para "Falta no dia pendente; Dispensa/Licença; turma; nome" (grupo "Sem lançamento" não existe mais no nível de aluno — ver item 1.2)</td>
+  </tr>
+  <tr>
+    <td>12.1-C (implícito)</td>
+    <td>Não especifica paginação</td>
+    <td>Adicionada paginação com seletor de itens por página (20/50/100) e navegação de página</td>
+  </tr>
+  <tr>
+    <td>12.1-A, Data de referência</td>
+    <td>"Permite selecionar outras datas e sinaliza se estão dentro do prazo"</td>
+    <td>Implementado como calendário em popover (mês/ano com navegação, dias em grade), com <strong>datas futuras desabilitadas</strong> — não é possível consultar uma data que ainda não ocorreu</td>
+  </tr>
+</table>
+
+<h2 style="font-size:17px;color:#183b56;border-bottom:2px solid #e8f0fb;padding-bottom:6px;margin-top:26px">3. Itens visuais (fora do escopo funcional do PRD)</h2>
+<ul>
+  <li><strong>Tipografia:</strong> o PRD não especifica fonte. O protótipo usa Inter como fonte padrão da interface e Oxygen especificamente na grid de alunos.</li>
+  <li><strong>Modal de acionamento (item 12.2):</strong> restilizado seguindo os tokens visuais do design system Sala do Futuro (cards com borda superior colorida, botões em pílula), sem alteração de conteúdo ou fluxo.</li>
+  <li><strong>Logo:</strong> o placeholder "LOGO" da navegação foi substituído pelo logo oficial Sala do Futuro.</li>
+</ul>
+
+<h2 style="font-size:17px;color:#183b56;border-bottom:2px solid #e8f0fb;padding-bottom:6px;margin-top:26px">4. Itens do PRD ainda não implementados no protótipo</h2>
+<table>
+  <tr><th style="width:30%">Item do PRD</th><th>Situação no protótipo</th></tr>
+  <tr><td>12.1-F — Estados de tela: Carregando (skeleton), Erro parcial, Sem permissão</td><td>Não implementados; apenas os estados "com dados" e "sem ocorrências" existem</td></tr>
+  <tr><td>12.4 — Filtros do histórico (período, situação, usuário, turma, estudante/RA, forma)</td><td>Histórico exibido como tabela simples, sem filtros</td></tr>
+  <tr><td>RF-028 / CA-026 — Exportação</td><td>Botão "Exportar" presente na interface, mas não gera arquivo nem registra log</td></tr>
+  <tr><td>RN-019 / CA-025 — Sigilo por perfil</td><td>Não simulado; todos os registros são visíveis ao perfil autenticado no protótipo</td></tr>
+</table>
+
+<p style="margin-top:28px;font-size:12px;color:#8397a6">Documento gerado a partir das decisões tomadas durante a prototipação da tela Frequência Ativa. Recomenda-se revisão do time de produto antes de incorporar as mudanças de regra de negócio (seção 1) ao PRD oficial.</p>
+
+</doc-page>
+
+</x-dc>
+</body>
+</html>

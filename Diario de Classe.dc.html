@@ -249,7 +249,7 @@ html,body{margin:0;padding:0;box-sizing:border-box}
               </button>
               <button type="button" onClick="{{ goFrequencia }}" style="display:flex;align-items:center;gap:8px;width:100%;min-height:34px;padding:6px 12px;border:1px solid #c1c9d8;border-radius:8px;background:transparent;color:#304869;font-size:13px;font-weight:600;text-align:left;cursor:pointer" style-hover="background:#e8f0fb;border-color:#1565d8">
                 <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="#304869" stroke-width="1.4" stroke-linecap="round"><rect x="2.5" y="4" width="15" height="13" rx="2"></rect><path d="M2.5 8h15M6.5 2.5v3M13.5 2.5v3"></path><path d="M13.5 11.5l-2.3 2.3-1.2-1.2"></path></svg>
-                <span style="flex:1;line-height:1.3">Frequência Ativa</span>
+                <span style="flex:1;line-height:1.3">Alerta de Falta Diária</span>
                 <span style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;opacity:.55;margin-left:auto"><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5l3.5 3.5-3.5 3.5"></path></svg></span>
               </button>
               <div style="display:flex;align-items:center;gap:8px;width:100%;min-height:54px;padding-top:6px;padding-bottom:6px;padding-left:12px;padding-right:12px;margin-top:0;border:1px solid #c1c9d8;border-radius:8px;background:transparent;color:#304869;font-size:13px;font-weight:600;text-align:left">
@@ -308,7 +308,7 @@ html,body{margin:0;padding:0;box-sizing:border-box}
     <main style="margin-top:60px;flex:1;padding:20px 30px 40px">
 
       <div style="font-size:12px;color:#55585d;margin-bottom:10px">
-        <span onClick="{{ goHome }}" style="color:#55585d;text-decoration:none;cursor:pointer" style-hover="color:#1565d8;text-decoration:underline">Diário de Classe</span> &gt; Relatórios &gt; <span style="color:#304869;font-weight:600">Frequência Ativa</span>
+        <span onClick="{{ goHome }}" style="color:#55585d;text-decoration:none;cursor:pointer" style-hover="color:#1565d8;text-decoration:underline">Alerta de Falta Diária</span> &gt; Relatórios &gt; <span style="color:#304869;font-weight:600">Alerta de Falta Diária</span>
       </div>
 
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px;flex-wrap:wrap">
@@ -317,7 +317,7 @@ html,body{margin:0;padding:0;box-sizing:border-box}
             <svg viewBox="0 0 20 20" width="30" height="30" fill="none" stroke="#d22d2d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="15" height="13" rx="2"></rect><path d="M2.5 8h15M6.5 2.5v3M13.5 2.5v3"></path><path d="M6 12.5h2M10 12.5h2"></path></svg>
           </span>
           <div>
-            <h1 style="font-family:'Inter',sans-serif;font-size:22px;font-weight:700;color:#162f67;margin:0 0 4px">Frequência Ativa</h1>
+            <h1 style="font-family:'Inter',sans-serif;font-size:22px;font-weight:700;color:#162f67;margin:0 0 4px">Alerta de Falta Diária</h1>
             <p style="font-size:14px;color:#55585d;margin:0;max-width:520px">Consulte estudantes sem presença no dia e acione o responsável pelo WhatsApp Business da escola.</p>
           </div>
         </div>
@@ -333,18 +333,17 @@ html,body{margin:0;padding:0;box-sizing:border-box}
         </div>
       </div>
 
-      <div style="background:#fff;border:1px solid #34abd7;border-radius:12px;padding:10px 16px;margin-bottom:20px">
-        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+      <div style="background:#fff;border:1px solid #e2e7ee;border-radius:12px;padding:14px 16px;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:10px">
           <div style="font-size:13px;font-weight:700;color:#304869;flex-shrink:0">Filtros</div>
           <div style="font-size:12px;color:#55585d;flex-shrink:0"><span style="font-weight:600;color:#183b56">EE Ruy de Mello Junqueira</span> · 2026</div>
           <div style="display:flex;align-items:center;gap:6px;position:relative">
-            <button type="button" onClick="{{ prevDay }}" aria-label="Dia anterior" style="width:24px;height:24px;border-radius:6px;border:1px solid #c1c9d8;background:#fff;color:#304869;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px" style-hover="background:#e8f0fb">‹</button>
+            <button type="button" onClick="{{ prevDay }}" disabled="{{ prevDayDisabled }}" aria-label="Dia anterior" style="width:24px;height:24px;border-radius:6px;border:1px solid #c1c9d8;background:#fff;color:{{ prevDayColor }};cursor:{{ prevDayCursor }};display:flex;align-items:center;justify-content:center;font-size:13px" style-hover="background:#e8f0fb">‹</button>
             <button type="button" onClick="{{ toggleCalendar }}" style="height:30px;padding:0 10px;border:1px solid #c1c9d8;border-radius:6px;background:#fff;color:#304869;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;display:flex;align-items:center;gap:6px" style-hover="background:#e8f0fb">
               <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="#304869" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2"></rect><path d="M3 8h14M6.5 2.5v3M13.5 2.5v3"></path></svg>
               {{ dataReferenciaLabel }}
             </button>
-            <button type="button" onClick="{{ nextDay }}" aria-label="Próximo dia" style="width:24px;height:24px;border-radius:6px;border:1px solid #c1c9d8;background:#fff;color:#304869;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px" style-hover="background:#e8f0fb">›</button>
-            <span style="font-size:11px;color:{{ prazoLabelColor }};font-weight:600">{{ prazoLabel }}</span>
+            <button type="button" onClick="{{ nextDay }}" disabled="{{ nextDayDisabled }}" aria-label="Próximo dia" style="width:24px;height:24px;border-radius:6px;border:1px solid #c1c9d8;background:#fff;color:{{ nextDayColor }};cursor:{{ nextDayCursor }};display:flex;align-items:center;justify-content:center;font-size:13px" style-hover="background:#e8f0fb">›</button>
 
             <sc-if value="{{ calendarOpen }}" hint-placeholder-val="{{ false }}">
               <div style="position:absolute;top:36px;left:24px;z-index:50;background:#fff;border:1px solid #e8f0fb;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.15);padding:16px;width:264px">
@@ -367,6 +366,10 @@ html,body{margin:0;padding:0;box-sizing:border-box}
             </sc-if>
           </div>
           <div style="margin-left:auto;font-size:11px;color:#55585d">Atualizado em {{ atualizadoLabel }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;padding:7px 12px;background:#f4f8fd;border-radius:8px;width:fit-content">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="#5b7ba8" stroke-width="1.5" style="flex-shrink:0"><circle cx="8" cy="8" r="6.2"></circle><path d="M8 5.2v3.3M8 10.6h.01"></path></svg>
+          <span style="font-size:12px;color:#3f5a7d;font-weight:500">{{ prazoLabel }}</span>
         </div>
       </div>
 
@@ -415,27 +418,69 @@ html,body{margin:0;padding:0;box-sizing:border-box}
             <span onClick="{{ voltarLista }}" style="color:#1565d8;font-size:13px;font-weight:600;cursor:pointer" style-hover="text-decoration:underline">‹ Ver relação</span>
           </div>
           <h2 style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:#304869;margin:0 0 6px">Turmas sem lançamento</h2>
-          <p style="font-size:13px;color:#55585d;margin:0 0 14px;max-width:600px">A frequência é lançada pela turma inteira: enquanto o professor não salvar o dia, nenhum aluno pode ser classificado como Falta ou Presença.</p>
+          <p style="font-size:13px;color:#55585d;margin:0 0 14px;max-width:600px">A frequência é lançada por disciplina, aula a aula: enquanto o professor não salvar a frequência daquela aula, nenhum aluno pode ser classificado como Falta ou Presença.</p>
           <sc-if value="{{ hasTurmasSemLancamento }}" hint-placeholder-val="{{ true }}">
             <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 5px 0 rgba(0,0,0,.05)">
               <table style="width:100%;border-collapse:collapse;font-size:13px">
                 <thead>
                   <tr style="background:#f9f9f9;text-align:left">
+                    <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Tipo de ensino</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Turma</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Turno</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Situação</th>
+                    <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb;text-align:center">Detalhe</th>
                   </tr>
                 </thead>
                 <tbody>
                   <sc-for list="{{ turmasSemLancamentoRows }}" as="tp" hint-placeholder-count="2">
                     <tr style="border-top:1px solid #f2f2f2">
+                      <td style="padding:10px 12px;color:#183b56">{{ tp.ensino }}</td>
                       <td style="padding:10px 12px;color:#183b56;font-weight:600">{{ tp.turma }}</td>
                       <td style="padding:10px 12px;color:#183b56">{{ tp.turno }}</td>
                       <td style="padding:10px 12px"><span style="display:inline-block;padding:4px 10px;border-radius:20px;background:#fff8e6;color:#f7b100;font-weight:700;font-size:12px">Sem lançamento de frequência</span></td>
+                      <td style="padding:10px 12px;text-align:center">
+                        <button type="button" onClick="{{ tp.abrirDetalhe }}" aria-label="Ver disciplinas pendentes" style="width:30px;height:30px;border-radius:8px;border:1px solid #c1c9d8;background:#fff;color:#304869;cursor:pointer;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#e8f0fb">
+                          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 10s3.2-6 9-6 9 6 9 6-3.2 6-9 6-9-6-9-6z"></path><circle cx="10" cy="10" r="2.6"></circle></svg>
+                        </button>
+                      </td>
                     </tr>
                   </sc-for>
                 </tbody>
               </table>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noTurmasSemLancamento }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fff;border-radius:12px;padding:40px;text-align:center;color:#55585d;font-size:14px;box-shadow:0 2px 5px 0 rgba(0,0,0,.05)">Nenhuma turma sem lançamento para o tipo de ensino e turno selecionados.</div>
+          </sc-if>
+          <sc-if value="{{ detalheOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:fixed;inset:0;background:rgba(20,30,50,.45);display:flex;align-items:center;justify-content:center;z-index:200">
+              <div style="background:#fff;border-radius:12px;width:520px;max-width:92vw;max-height:88vh;overflow-y:auto;padding:20px 22px;box-shadow:0 0 10px 0 rgba(0,0,0,.1);border-top:4px solid #f7b100;border-radius:12px 12px 0 0">
+                <div style="font-family:'Inter',sans-serif;font-size:18px;font-weight:700;color:#183b56;margin-bottom:2px">Disciplinas com frequência pendente</div>
+                <div style="font-size:13px;color:#55585d;margin-bottom:16px">{{ detalheEnsino }} · {{ detalheTurma }} · {{ detalheTurno }}</div>
+                <div style="border-top:1px dashed #c1c9d8;margin:0 0 14px"></div>
+                <table style="width:100%;border-collapse:collapse">
+                  <thead>
+                    <tr>
+                      <th style="text-align:left;padding:8px 10px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Disciplina/Componente</th>
+                      <th style="text-align:left;padding:8px 10px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Horário</th>
+                      <th style="text-align:left;padding:8px 10px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Aulas pendentes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <sc-for list="{{ detalheDisciplinas }}" as="d" hint-placeholder-count="2">
+                      <tr style="border-top:1px solid #f2f2f2">
+                        <td style="padding:9px 10px;color:#183b56;font-weight:600">{{ d.nome }}</td>
+                        <td style="padding:9px 10px;color:#183b56">{{ d.horario }}</td>
+                        <td style="padding:9px 10px;color:#183b56">{{ d.aulas }}</td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+                <div style="font-size:12px;color:#55585d;margin:14px 0 0">Horários conforme a grade horária vigente da turma.</div>
+                <div style="display:flex;justify-content:flex-end;margin-top:18px">
+                  <button type="button" onClick="{{ fecharDetalhe }}" style="border-radius:50px;padding:10px 20px;border:1px solid #1565d8;background:#fff;color:#1565d8;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer">Fechar</button>
+                </div>
+              </div>
             </div>
           </sc-if>
         </section>
@@ -478,14 +523,20 @@ html,body{margin:0;padding:0;box-sizing:border-box}
               <option value="acionado">WhatsApp acionado</option>
               <option value="expirado">Prazo expirado</option>
             </select>
+            <select value="{{ filtroEnsino }}" onChange="{{ onFiltroEnsino }}" required style="height:38px;padding:0 10px;border:1px solid {{ filtroEnsinoBorder }};border-radius:8px;background:#fff;color:#304869;font-size:13px">
+              <option value="" disabled>Selecione o tipo de ensino*</option>
+              <sc-for list="{{ ensinoOptions }}" as="en" hint-placeholder-count="3">
+                <option value="{{ en }}">{{ en }}</option>
+              </sc-for>
+            </select>
             <select value="{{ filtroTurma }}" onChange="{{ onFiltroTurma }}" style="height:38px;padding:0 10px;border:1px solid #c1c9d8;border-radius:8px;background:#fff;color:#304869;font-size:13px">
               <option value="todos">Todas as turmas</option>
               <sc-for list="{{ turmaOptions }}" as="t" hint-placeholder-count="4">
                 <option value="{{ t }}">{{ t }}</option>
               </sc-for>
             </select>
-            <select value="{{ filtroTurno }}" onChange="{{ onFiltroTurno }}" style="height:38px;padding:0 10px;border:1px solid #c1c9d8;border-radius:8px;background:#fff;color:#304869;font-size:13px">
-              <option value="todos">Todos os turnos</option>
+            <select value="{{ filtroTurno }}" onChange="{{ onFiltroTurno }}" required style="height:38px;padding:0 10px;border:1px solid {{ filtroTurnoBorder }};border-radius:8px;background:#fff;color:#304869;font-size:13px">
+              <option value="" disabled>Selecione o turno*</option>
               <sc-for list="{{ turnoOptions }}" as="tn" hint-placeholder-count="2">
                 <option value="{{ tn }}">{{ tn }}</option>
               </sc-for>
@@ -496,19 +547,23 @@ html,body{margin:0;padding:0;box-sizing:border-box}
             </button>
           </div>
 
+          <sc-if value="{{ turnoRequired }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fff;border-radius:12px;padding:40px;text-align:center;color:#55585d;font-size:14px;box-shadow:0 2px 5px 0 rgba(0,0,0,.05)">{{ filtrosPendentesLabel }}</div>
+          </sc-if>
           <sc-if value="{{ hasRows }}" hint-placeholder-val="{{ true }}">
             <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 5px 0 rgba(0,0,0,.05)">
               <table style="width:100%;border-collapse:collapse;font-size:13px;font-family:'Oxygen',sans-serif">
                 <thead>
                   <tr style="background:#f9f9f9;text-align:left">
                     <th style="padding:12px;width:36px;border-bottom:2px solid #e8f0fb"><input type="checkbox" checked="{{ allSelected }}" disabled="{{ selectAllDisabled }}" onChange="{{ toggleSelectAll }}" title="Selecionar todos" style="width:16px;height:16px;cursor:pointer"></input></th>
+                    <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Tipo de ensino</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Turma</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Turno</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Estudante</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">RA</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Telefone principal</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Situação</th>
-                    <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Alerta</th>
+                    <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Alerta de falta diária</th>
                     <th style="padding:12px;font-weight:700;color:#55585d;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e8f0fb">Ação</th>
                   </tr>
                 </thead>
@@ -518,6 +573,7 @@ html,body{margin:0;padding:0;box-sizing:border-box}
                       <td style="padding:10px 12px">
                         <input type="checkbox" checked="{{ r.checked }}" disabled="{{ r.checkDisabled }}" onChange="{{ r.toggle }}" style="width:16px;height:16px;cursor:pointer"></input>
                       </td>
+                      <td style="padding:10px 12px;color:#183b56">{{ r.ensino }}</td>
                       <td style="padding:10px 12px;color:#183b56">{{ r.turma }}</td>
                       <td style="padding:10px 12px;color:#183b56">{{ r.turno }}</td>
                       <td style="padding:10px 12px;color:#183b56">
@@ -537,9 +593,6 @@ html,body{margin:0;padding:0;box-sizing:border-box}
                       <td style="padding:10px 12px">
                         <sc-if value="{{ r.showAcionar }}" hint-placeholder-val="{{ false }}">
                           <button type="button" onClick="{{ r.abrirModal }}" style="height:30px;padding:0 12px;border-radius:20px;border:none;background:#1565d8;color:#fff;font-size:12px;font-weight:700;cursor:pointer" style-hover="background:#0f4fae">Acionar alerta</button>
-                        </sc-if>
-                        <sc-if value="{{ r.showDesfazer }}" hint-placeholder-val="{{ false }}">
-                          <button type="button" onClick="{{ r.abrirDesfazer }}" style="height:30px;padding:0 12px;border-radius:20px;border:1px solid #c1c9d8;background:#fff;color:#304869;font-size:12px;font-weight:700;cursor:pointer">Desfazer ({{ r.remainingLabel }})</button>
                         </sc-if>
                         <sc-if value="{{ r.showMuted }}" hint-placeholder-val="{{ false }}">
                           <span title="{{ r.tooltip }}" style="font-size:12px;color:#8397a6;cursor:default">{{ r.mutedLabel }}</span>
@@ -584,7 +637,7 @@ html,body{margin:0;padding:0;box-sizing:border-box}
       <div style="font-family:'Inter',sans-serif;font-size:20px;font-weight:700;color:#183b56;margin-bottom:2px">Acionar alerta de falta</div>
       <div style="font-size:15px;color:#183b56;margin-bottom:12px"><span style="font-weight:700;font-size:17px">{{ modalNome }}</span> · {{ modalData }}</div>
       <div style="border-top:1px dashed #c1c9d8;margin:0 0 14px"></div>
-      <div style="font-size:13px;color:#55585d;margin-bottom:16px">{{ modalTurma }} · {{ modalTurno }} · <span style="color:#e53239;font-weight:700">Falta no dia</span></div>
+      <div style="font-size:13px;color:#55585d;margin-bottom:16px">{{ modalEnsino }} · {{ modalTurma }} · {{ modalTurno }} · <span style="color:#e53239;font-weight:700">Falta no dia</span></div>
       <div style="font-size:14px;font-weight:400;color:#183b56;margin-bottom:8px">Contato</div>
       <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
         <sc-for list="{{ modalContatos }}" as="c" hint-placeholder-count="2">
@@ -606,19 +659,6 @@ html,body{margin:0;padding:0;box-sizing:border-box}
           <svg viewBox="0 0 20 20" width="15" height="15" fill="#fff"><path d="M17.5 10.4a7.4 7.4 0 01-10.9 6.5L3 18l1.1-3.4A7.4 7.4 0 1117.5 10.4z"></path></svg>
           Abrir WhatsApp
         </button>
-      </div>
-    </div>
-  </div>
-</sc-if>
-
-<sc-if value="{{ desfazerOpen }}" hint-placeholder-val="{{ false }}">
-  <div style="position:fixed;inset:0;background:rgba(20,30,50,.45);display:flex;align-items:center;justify-content:center;z-index:200">
-    <div style="background:#fff;border-radius:14px;width:400px;max-width:92vw;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,.2)">
-      <div style="font-size:16px;font-weight:700;color:#162f67;margin-bottom:12px">Desfazer acionamento</div>
-      <p style="font-size:13px;color:#55585d;margin:0 0 20px">Esta ação não cancela uma mensagem enviada pelo WhatsApp. O alerta será apenas marcado como pendente novamente na Sala do Futuro. Deseja continuar?</p>
-      <div style="display:flex;justify-content:flex-end;gap:10px">
-        <button type="button" onClick="{{ fecharDesfazer }}" style="height:38px;padding:0 16px;border-radius:8px;border:1px solid #c1c9d8;background:#fff;color:#304869;font-size:13px;font-weight:600;cursor:pointer">Cancelar</button>
-        <button type="button" onClick="{{ confirmarDesfazer }}" style="height:38px;padding:0 16px;border-radius:8px;border:none;background:#d22d2d;color:#fff;font-size:13px;font-weight:600;cursor:pointer">Marcar como pendente</button>
       </div>
     </div>
   </div>
@@ -660,6 +700,13 @@ html,body{margin:0;padding:0;box-sizing:border-box}
   </div>
 </sc-if>
 
+<sc-if value="{{ toastOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#183b56;color:#fff;padding:12px 20px;border-radius:10px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:300;display:flex;align-items:center;gap:8px">
+    <svg viewBox="0 0 20 20" width="16" height="16" fill="#5fe07a"><path d="M8 13.5l-3-3 1.1-1.1L8 11.3l5.9-5.9L15 6.5z"></path></svg>
+    {{ toastMessage }}
+  </div>
+</sc-if>
+
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 function fmtDate(d){return d.toLocaleDateString('pt-BR');}
@@ -684,24 +731,33 @@ function addDiasLetivos(base, n){
 function fmtDateTime(d){return d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
 
 // EE Ruy de Mello Junqueira: 9 turmas de Ensino Fundamental + 6 de Ensino Médio, ~40 alunos por turma.
+const EF = 'Ensino Fundamental', EM = 'Ensino Médio';
+const ENSINO_OPTIONS = [EF, EM];
 const TURMAS = [
-  {turma:'6ºA', turno:'Manhã'}, {turma:'6ºB', turno:'Manhã'},
-  {turma:'7ºA', turno:'Manhã'}, {turma:'7ºB', turno:'Manhã'}, {turma:'7ºC', turno:'Tarde'},
-  {turma:'8ºA', turno:'Tarde'}, {turma:'8ºB', turno:'Tarde'},
-  {turma:'9ºA', turno:'Tarde'}, {turma:'9ºB', turno:'Tarde'},
-  {turma:'1ª A', turno:'Manhã'}, {turma:'1ª B', turno:'Manhã'},
-  {turma:'2ª A', turno:'Manhã'}, {turma:'2ª B', turno:'Tarde'},
-  {turma:'3ª A', turno:'Tarde'}, {turma:'3ª B', turno:'Tarde'}
+  {turma:'6ºA', turno:'Manhã', ensino:EF}, {turma:'6ºB', turno:'Manhã', ensino:EF},
+  {turma:'7ºA', turno:'Manhã', ensino:EF}, {turma:'7ºB', turno:'Manhã', ensino:EF}, {turma:'7ºC', turno:'Tarde', ensino:EF},
+  {turma:'8ºA', turno:'Tarde', ensino:EF}, {turma:'8ºB', turno:'Tarde', ensino:EF},
+  {turma:'9ºA', turno:'Tarde', ensino:EF}, {turma:'9ºB', turno:'Tarde', ensino:EF},
+  {turma:'1ª A', turno:'Manhã', ensino:EM}, {turma:'1ª B', turno:'Manhã', ensino:EM},
+  {turma:'2ª A', turno:'Manhã', ensino:EM}, {turma:'2ª B', turno:'Tarde', ensino:EM},
+  {turma:'3ª A', turno:'Tarde', ensino:EM}, {turma:'3ª B', turno:'Tarde', ensino:EM},
+  {turma:'3ª C', turno:'Noite', ensino:EM}, {turma:'3ª D', turno:'Noite', ensino:EM}
 ];
 // Turmas cuja frequência do dia não foi lançada pelo professor: todos os ~40 alunos entram como "Sem lançamento".
 const SEM_LANCAMENTO_TURMAS = new Set(['7ºB', '2ª B']);
 // Quantidade de faltantes (Falta no dia) por turma, nas demais turmas (professor já lançou a frequência).
-const FALTAS_POR_TURMA = [2,3,4,0,0,3,1,2,3,2,4,0,0,2,3];
+const FALTAS_POR_TURMA = [2,3,4,0,0,3,1,2,3,2,4,0,0,2,3,3,2];
 // Índices de turma (na ordem de TURMAS) com 1 aluno em Dispensa/Licença.
 const DL_TURMAS = new Set([1, 6, 10, 13]);
 const DL_NOMES = ['Licença médica', 'Dispensa de Educação Física', 'Licença médica', 'Afastamento por doença infectocontagiosa'];
+// Disciplina(s)/componente(s) com frequência pendente nas turmas sem lançamento.
+const COMPONENTES_PENDENTES = { '7ºB': [{ nome: 'Língua Portuguesa', aulas: 2, horario: '08:30 - 10:10' }, { nome: 'Matemática', aulas: 1, horario: '10:30 - 11:20' }], '2ª B': [{ nome: 'Química', aulas: 3, horario: '13:10 - 16:30' }] };
 
 const FIRST_NAMES = ['Ana','Beatriz','Caio','Duda','Eduarda','Felipe','Giovana','Heitor','Isabela','João Pedro','Karina','Lucas','Manuela','Nicolas','Olívia','Pedro Henrique','Queren','Rafael','Sabrina','Thiago','Valentina','William','Yasmin','Bruno','Camila','Diego','Elisa','Fernando','Gabriela','Henrique','Ingrid','Júlia','Kevin','Larissa','Matheus','Natália','Otávio','Priscila','Rodrigo','Sophia','Vinícius','Aline','Bianca','Cauê','Daniela','Erick','Flávia','Gustavo','Helena','Igor','Joana'];
+const FEMALE_NAMES = ['Ana','Beatriz','Duda','Eduarda','Giovana','Isabela','Karina','Manuela','Olívia','Queren','Sabrina','Valentina','Yasmin','Camila','Elisa','Gabriela','Ingrid','Júlia','Larissa','Natália','Priscila','Sophia','Aline','Bianca','Daniela','Flávia','Helena','Joana'];
+const MALE_NAMES = ['Caio','Felipe','Heitor','João Pedro','Lucas','Nicolas','Pedro Henrique','Rafael','Thiago','William','Bruno','Diego','Fernando','Henrique','Kevin','Matheus','Otávio','Rodrigo','Vinícius','Cauê','Erick','Gustavo','Igor'];
+// Gênero de cada vínculo, para o nome do responsável concordar (RN-011).
+const VINCULO_GENERO = { 'Mãe':'F','Pai':'M','Guardião':'M','Tutor':'M','Avó':'F','Avô':'M','Madrasta':'F','Padrasto':'M','Irmã':'F','Irmão':'M','Tia':'F','Tio':'M','Cônjuge':null,'Outros':null };
 const LAST_NAMES = ['Souza Lima','Ferreira Alves','Ramos Silva','Nunes Costa','Araújo Torres','Melo Rocha','Barbosa Dias','Pires Nogueira','Amaral','Vieira Santos','Martins Freire','Prado Cardoso','Barros Teixeira','Correia Farias','Batista Almeida','Gonçalves Peixoto','Lopes Cavalcante','Rezende Bastos','Duarte Rocha','Siqueira Prado','Cordeiro Brito','Moraes','Cavalcanti','Andrade Reis','Monteiro','Carvalho Pinto','Azevedo Lins','Guimarães','Nogueira Cruz','Barreto Xavier'];
 // Ordem hierárquica dos responsáveis (RN-011).
 const VINCULOS = ['Mãe','Pai','Guardião','Tutor','Avó','Avô','Madrasta','Padrasto','Irmã','Irmão','Tia','Tio','Cônjuge','Outros'];
@@ -709,12 +765,19 @@ const VINCULOS = ['Mãe','Pai','Guardião','Tutor','Avó','Avô','Madrasta','Pad
 function nomeAluno(seed){
   return FIRST_NAMES[seed % FIRST_NAMES.length] + ' ' + LAST_NAMES[(seed * 7 + 3) % LAST_NAMES.length];
 }
+function nomeSocialAluno(seed){
+  return seed % 6 === 0 ? (FIRST_NAMES[(seed*13+5) % FIRST_NAMES.length] + ' ' + LAST_NAMES[(seed*11+2) % LAST_NAMES.length]) : null;
+}
+// Nome social é prioritário em todas as referências e mensagens; na ausência, usa-se o nome cadastral.
+function nomeExibicao(st){ return st.nomeSocial || st.nome; }
 function raAluno(seed){
   return String(100000 + seed).padStart(8,'0').slice(0,8) + '-' + (seed % 10) + ' SP';
 }
 function telefoneAtVinculoIdx(seed, vinculoIdx, i){
   const vinculo = VINCULOS[vinculoIdx];
-  const respNome = FIRST_NAMES[(seed * 3 + 11 + i * 5) % FIRST_NAMES.length] + ' ' + LAST_NAMES[(seed * 5 + 2 + i * 7) % LAST_NAMES.length];
+  const genero = VINCULO_GENERO[vinculo];
+  const pool = genero === 'F' ? FEMALE_NAMES : (genero === 'M' ? MALE_NAMES : FIRST_NAMES);
+  const respNome = pool[(seed * 3 + 11 + i * 5) % pool.length] + ' ' + LAST_NAMES[(seed * 5 + 2 + i * 7) % LAST_NAMES.length];
   const numero = String(1000 + (seed * 37 + i * 91) % 9000).padStart(4,'0');
   return { vinculo, nome: respNome, numero: '+55 (11) 9••••-' + numero };
 }
@@ -739,7 +802,7 @@ function buildStudents(now){
       const seed = tIdx * 100 + i;
       const nContatos = seed % 11 === 0 ? 0 : 1 + (seed % 3);
       students.push({
-        id: id++, turma: t.turma, turno: t.turno, nome: nomeAluno(seed), ra: raAluno(seed),
+        id: id++, turma: t.turma, turno: t.turno, ensino: t.ensino, nome: nomeAluno(seed), nomeSocial: nomeSocialAluno(seed), ra: raAluno(seed),
         status: 'falta', telefones: telefonesAluno(seed, nContatos),
         alertStatus: 'pendente', acionadoAt: null
       });
@@ -747,7 +810,7 @@ function buildStudents(now){
     if (DL_TURMAS.has(tIdx)) {
       const seed = tIdx * 100 + 50;
       students.push({
-        id: id++, turma: t.turma, turno: t.turno, nome: nomeAluno(seed), ra: raAluno(seed),
+        id: id++, turma: t.turma, turno: t.turno, ensino: t.ensino, nome: nomeAluno(seed), ra: raAluno(seed),
         status: 'dl', dlName: DL_NOMES[tIdx % DL_NOMES.length], telefones: telefonesAluno(seed, 1),
         alertStatus: 'na', acionadoAt: null
       });
@@ -781,15 +844,17 @@ class Component extends DCLogic {
       filtroSituacao: 'todos',
       filtroAlerta: 'todos',
       filtroTurma: 'todos',
-      filtroTurno: 'todos',
+      filtroEnsino: '',
+      filtroTurno: '',
       selected: {},
       page: 1,
       pageSize: 20,
       calendarOpen: false,
       calMonth: new Date(),
       modalId: null,
+      detalheTurmaId: null,
+      toast: null,
       modalContatoIdx: 0,
-      desfazerId: null,
       loteQueue: [],
       loteIndex: 0,
       loteAcionados: 0,
@@ -813,16 +878,17 @@ class Component extends DCLogic {
     else { situacaoLabel = s.dlName; situacaoColor = '#00b9d3'; }
 
     let alertaLabel, alertaColor;
-    let remainingMs = 0;
     if (s.alertStatus === 'na') { alertaLabel = 'Não aplicável'; alertaColor = '#8397a6'; }
     else if (expired && s.alertStatus !== 'acionado') { alertaLabel = 'Prazo expirado'; alertaColor = '#8397a6'; }
-    else if (s.alertStatus === 'acionado') {
-      remainingMs = 5*60*1000 - (this.state.now - s.acionadoAt);
-      alertaLabel = 'WhatsApp acionado'; alertaColor = '#118f28';
-    } else { alertaLabel = 'Pendente'; alertaColor = '#55585d'; }
+    else if (s.alertStatus === 'acionado') { alertaLabel = 'WhatsApp acionado'; alertaColor = '#118f28'; }
+    else { alertaLabel = 'Pendente'; alertaColor = '#55585d'; }
 
     const hasPhone = s.telefones && s.telefones.length > 0;
-    let showAcionar=false, showDesfazer=false, showMuted=false, mutedLabel='', tooltip='', remainingLabel='';
+    let showAcionar=false, showMuted=false, mutedLabel='', tooltip='';
+    // RN atualizada: ocorrências diurnas só ficam disponíveis no dia da falta; noturnas até 23h59 do dia seguinte.
+    const regraPrazo = s.turno === 'Noite'
+      ? 'disponível até 23h59 do dia seguinte à falta, para ocorrências noturnas'
+      : 'disponível somente no dia da falta, para ocorrências diurnas';
 
     if (s.status !== 'falta') {
       showMuted = true;
@@ -833,21 +899,15 @@ class Component extends DCLogic {
       tooltip = 'Não há Celular Principal válido cadastrado. Atualize o cadastro na Ficha do Aluno.';
     } else if (expired && s.alertStatus !== 'acionado') {
       showMuted = true; mutedLabel = 'Prazo encerrado';
-      tooltip = 'O prazo de cinco dias corridos a contar da data da aula foi encerrado.';
+      tooltip = 'O prazo de acionamento (' + regraPrazo + ') foi encerrado.';
     } else if (s.alertStatus === 'acionado') {
-      if (remainingMs > 0) {
-        showDesfazer = true;
-        const secs = Math.ceil(remainingMs/1000);
-        remainingLabel = Math.floor(secs/60) + ':' + String(secs%60).padStart(2,'0');
-      } else {
-        showMuted = true; mutedLabel = 'Acionado';
-        tooltip = 'WhatsApp acionado. Janela de reversão encerrada.';
-      }
+      showMuted = true; mutedLabel = 'Acionado';
+      tooltip = 'WhatsApp acionado para este estudante.';
     } else {
       showAcionar = true;
     }
 
-    return { situacaoLabel, situacaoColor, alertaLabel, alertaColor, showAcionar, showDesfazer, showMuted, mutedLabel, tooltip, remainingLabel };
+    return { situacaoLabel, situacaoColor, alertaLabel, alertaColor, showAcionar, showMuted, mutedLabel, tooltip };
   }
 
   toggleSelect(id){
@@ -858,10 +918,13 @@ class Component extends DCLogic {
     const s = this.state;
     const students = s.students;
 
-    const deadline = new Date(s.dataRef);
-    deadline.setDate(deadline.getDate() + 5);
-    deadline.setHours(23,59,59,999);
-    const globalExpired = new Date(s.now) > deadline;
+    // RN atualizada (item 1): diurno expira no próprio dia da falta; noturno, até 23h59 do dia seguinte.
+    const isExpired = (st) => {
+      const dl = new Date(s.dataRef);
+      if (st.turno === 'Noite') dl.setDate(dl.getDate() + 1);
+      dl.setHours(23,59,59,999);
+      return new Date(s.now) > dl;
+    };
 
     const todayOnly0 = new Date(s.now); todayOnly0.setHours(0,0,0,0);
     const dataRefOnly0 = new Date(s.dataRef); dataRefOnly0.setHours(0,0,0,0);
@@ -873,30 +936,38 @@ class Component extends DCLogic {
         if (st.status === 'dl') counts.dl++;
         if (st.alertStatus === 'acionado') counts.acionado++;
       });
-      turmasSemLancamento = TURMAS.filter(t => SEM_LANCAMENTO_TURMAS.has(t.turma));
+      turmasSemLancamento = TURMAS.filter(t => SEM_LANCAMENTO_TURMAS.has(t.turma) && (!s.filtroEnsino || t.ensino === s.filtroEnsino) && (!s.filtroTurno || t.turno === s.filtroTurno))
+        .map(t => ({ ...t, disciplinas: COMPONENTES_PENDENTES[t.turma] || [] }));
     }
+    const turmasSemLancamentoRows = turmasSemLancamento.map(t => ({
+      ...t,
+      abrirDetalhe: () => this.setState({ detalheTurmaId: t.turma })
+    }));
+    const detalheTurmaObj = s.detalheTurmaId ? turmasSemLancamento.find(t => t.turma === s.detalheTurmaId) : null;
 
-    const turmaOptions = [...new Set(students.map(st => st.turma))].sort();
-    const turnoOptions = [...new Set(students.map(st => st.turno))].sort();
+    const doEnsino = s.filtroEnsino ? students.filter(st => st.ensino === s.filtroEnsino) : students;
+    const turmaOptions = [...new Set(doEnsino.filter(st => !s.filtroTurno || st.turno === s.filtroTurno).map(st => st.turma))].sort();
+    const turnoOptions = [...new Set(doEnsino.map(st => st.turno))].sort();
 
     const todayOnly = new Date(s.now); todayOnly.setHours(0,0,0,0);
     const dataRefOnly = new Date(s.dataRef); dataRefOnly.setHours(0,0,0,0);
     const isFutureDate = dataRefOnly > todayOnly;
 
     let filtered = isFutureDate ? [] : students.filter(st => {
-      if (s.search && !(st.nome.toLowerCase().includes(s.search.toLowerCase()) || st.ra.includes(s.search))) return false;
+      if (s.search && !(st.nome.toLowerCase().includes(s.search.toLowerCase()) || (st.nomeSocial && st.nomeSocial.toLowerCase().includes(s.search.toLowerCase())) || st.ra.includes(s.search))) return false;
       if (s.filtroSituacao !== 'todos' && st.status !== s.filtroSituacao) return false;
-      if (s.filtroAlerta === 'pendente' && !(st.status==='falta' && st.alertStatus==='pendente' && !globalExpired)) return false;
+      if (s.filtroAlerta === 'pendente' && !(st.status==='falta' && st.alertStatus==='pendente' && !isExpired(st))) return false;
       if (s.filtroAlerta === 'acionado' && st.alertStatus !== 'acionado') return false;
-      if (s.filtroAlerta === 'expirado' && !(globalExpired && st.alertStatus !== 'acionado')) return false;
+      if (s.filtroAlerta === 'expirado' && !(isExpired(st) && st.alertStatus !== 'acionado')) return false;
       if (s.filtroTurma !== 'todos' && st.turma !== s.filtroTurma) return false;
-      if (s.filtroTurno !== 'todos' && st.turno !== s.filtroTurno) return false;
+      if (!s.filtroEnsino || st.ensino !== s.filtroEnsino) return false;
+      if (!s.filtroTurno || st.turno !== s.filtroTurno) return false;
       return true;
     });
 
     // Ordenação padrão (item 12.1-C): Falta no dia pendente; Sem lançamento; Dispensa/Licença; turma; nome.
     const grupoOrdem = (st) => {
-      if (st.status === 'falta' && st.alertStatus === 'pendente' && !globalExpired) return 0;
+      if (st.status === 'falta' && st.alertStatus === 'pendente' && !isExpired(st)) return 0;
       if (st.status === 'dl') return 1;
       return 2;
     };
@@ -913,22 +984,21 @@ class Component extends DCLogic {
     const pageRows = filtered.slice(pageStart, pageStart + s.pageSize);
 
     const rows = pageRows.map(st => {
-      const c = this.classify(st, globalExpired);
+      const c = this.classify(st, isExpired(st));
       const canSelect = c.showAcionar;
       return {
         _id: st.id,
-        turma: st.turma, turno: st.turno, nome: st.nome, ra: st.ra, iniciais: iniciais(st.nome),
+        turma: st.turma, turno: st.turno, ensino: st.ensino, nome: nomeExibicao(st), ra: st.ra, iniciais: iniciais(nomeExibicao(st)),
         telefone1Label: st.telefones[0] ? st.telefones[0].numero : '—',
         telefone2Label: st.telefones[1] ? st.telefones[1].numero : '—',
         telefone3Label: st.telefones[2] ? st.telefones[2].numero : '—',
         situacaoLabel: c.situacaoLabel, situacaoColor: c.situacaoColor, situacaoBg: tintBg(c.situacaoColor),
         alertaLabel: c.alertaLabel, alertaColor: c.alertaColor, alertaBg: tintBg(c.alertaColor),
-        showAcionar: c.showAcionar, showDesfazer: c.showDesfazer, showMuted: c.showMuted,
-        mutedLabel: c.mutedLabel, tooltip: c.tooltip, remainingLabel: c.remainingLabel,
+        showAcionar: c.showAcionar, showMuted: c.showMuted,
+        mutedLabel: c.mutedLabel, tooltip: c.tooltip,
         checked: !!s.selected[st.id], checkDisabled: !canSelect,
         toggle: () => this.toggleSelect(st.id),
-        abrirModal: () => this.setState({ modalId: st.id, modalContatoIdx: 0 }),
-        abrirDesfazer: () => this.setState({ desfazerId: st.id })
+        abrirModal: () => this.setState({ modalId: st.id, modalContatoIdx: 0 })
       };
     });
 
@@ -946,20 +1016,23 @@ class Component extends DCLogic {
       select: () => this.setState({ modalContatoIdx: i })
     })) : [];
     const modalDataStr = fmtDate(s.dataRef);
-    const modalMensagem = modalStudent ? ('Olá, ' + (modalContatos[s.modalContatoIdx] ? modalContatos[s.modalContatoIdx].nome : '') + '! Esperamos que esteja bem.\nNão identificamos a presença do(a) estudante ' + modalStudent.nome + ' nas aulas do dia ' + modalDataStr + '.\nSabemos que imprevistos podem acontecer. Caso precise esclarecer alguma informação, entre em contato com a equipe da EE Ruy de Mello Junqueira.\nA ausência também poderá ser justificada pela Sala do Futuro – Responsáveis:\nhttps://saladofuturo.educacao.sp.gov.br/login-responsaveis-gov\nConte conosco!\nEquipe da EE Ruy de Mello Junqueira') : '';
+    const modalMensagem = modalStudent ? ('Olá, ' + (modalContatos[s.modalContatoIdx] ? modalContatos[s.modalContatoIdx].nome : '') + '! Esperamos que esteja bem.\nNão identificamos a presença do(a) estudante ' + nomeExibicao(modalStudent) + ' nas aulas do dia ' + modalDataStr + '.\nSabemos que imprevistos podem acontecer. Caso precise esclarecer alguma informação, entre em contato com a equipe da EE Ruy de Mello Junqueira.\nA ausência também poderá ser justificada pela Sala do Futuro – Responsáveis:\nhttps://saladofuturo.educacao.sp.gov.br/login-responsaveis-gov\nConte conosco!\nEquipe da EE Ruy de Mello Junqueira') : '';
 
     const doAcionar = (studentId, forma) => {
       const st = students.find(x => x.id === studentId);
       const contato = st.telefones[0];
       this.setState(prev => ({
         students: prev.students.map(x => x.id === studentId ? { ...x, alertStatus: 'acionado', acionadoAt: Date.now() } : x),
-        historico: [{ id: 'h'+Date.now(), nome: st.nome, turma: st.turma, dataFalta: fmtDate(prev.dataRef), contato: contato ? (contato.vinculo + ' — ' + contato.nome) : '—', forma, dataHora: fmtDateTime(new Date()), resultado: 'WhatsApp acionado' }, ...prev.historico]
+        historico: [{ id: 'h'+Date.now(), nome: nomeExibicao(st), turma: st.turma, dataFalta: fmtDate(prev.dataRef), contato: contato ? (contato.vinculo + ' — ' + contato.nome) : '—', forma, dataHora: fmtDateTime(new Date()), resultado: 'WhatsApp acionado' }, ...prev.historico],
+        toast: 'Alerta acionado para ' + nomeExibicao(st) + '.'
       }));
+      clearTimeout(this._toastTimer);
+      this._toastTimer = setTimeout(() => this.setState({ toast: null }), 3500);
     };
 
     const loteEligibleIds = selectedIds.filter(id => {
       const st = students.find(x => x.id === id);
-      return st && this.classify(st, globalExpired).showAcionar;
+      return st && this.classify(st, isExpired(st)).showAcionar;
     });
 
     const loteStudent = s.loteActive && s.loteQueue[s.loteIndex] ? students.find(x => x.id === s.loteQueue[s.loteIndex]) : null;
@@ -984,14 +1057,64 @@ class Component extends DCLogic {
       isTurmasPendentes: s.freqView === 'turmas_pendentes',
       voltarLista: () => this.setState({ freqView: 'lista' }),
       hasTurmasSemLancamento: turmasSemLancamento.length > 0,
-      turmasSemLancamentoRows: turmasSemLancamento,
+      noTurmasSemLancamento: turmasSemLancamento.length === 0,
+      turmasSemLancamentoRows,
+      detalheOpen: !!detalheTurmaObj,
+      detalheTurma: detalheTurmaObj ? detalheTurmaObj.turma : '',
+      detalheTurno: detalheTurmaObj ? detalheTurmaObj.turno : '',
+      detalheEnsino: detalheTurmaObj ? detalheTurmaObj.ensino : '',
+      detalheDisciplinas: detalheTurmaObj ? detalheTurmaObj.disciplinas : [],
+      fecharDetalhe: () => this.setState({ detalheTurmaId: null }),
       hasHistorico: s.historico.length > 0,
       hasNoHistorico: s.historico.length === 0,
       historicoRows: s.historico.map(h => ({ ...h, resultadoColor: '#118f28' })),
 
       dataReferenciaLabel: fmtDate(s.dataRef),
-      prevDay: () => this.setState(prev => ({ dataRef: new Date(prev.dataRef.getTime() - 24*3600*1000) })),
-      nextDay: () => this.setState(prev => ({ dataRef: new Date(prev.dataRef.getTime() + 24*3600*1000) })),
+      // RN: o alerta é do dia da falta; noturno mantém a falta de ontem visível até hoje (23h59).
+      prevDay: () => this.setState(prev => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const min = s.filtroTurno === 'Noite' ? new Date(today0.getTime() - 86400000) : today0;
+        const pd = new Date(prev.dataRef.getTime() - 24*3600*1000);
+        return pd.getTime() < min.getTime() ? prev : { dataRef: pd };
+      }),
+      nextDay: () => this.setState(prev => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const nd = new Date(prev.dataRef.getTime() + 24*3600*1000);
+        return nd.getTime() > today0.getTime() ? prev : { dataRef: nd };
+      }),
+      prevDayDisabled: (() => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const min = s.filtroTurno === 'Noite' ? new Date(today0.getTime() - 86400000) : today0;
+        const cur = new Date(s.dataRef); cur.setHours(0,0,0,0);
+        return cur.getTime() <= min.getTime();
+      })(),
+      prevDayColor: (() => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const min = s.filtroTurno === 'Noite' ? new Date(today0.getTime() - 86400000) : today0;
+        const cur = new Date(s.dataRef); cur.setHours(0,0,0,0);
+        return cur.getTime() <= min.getTime() ? '#c1c9d8' : '#304869';
+      })(),
+      prevDayCursor: (() => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const min = s.filtroTurno === 'Noite' ? new Date(today0.getTime() - 86400000) : today0;
+        const cur = new Date(s.dataRef); cur.setHours(0,0,0,0);
+        return cur.getTime() <= min.getTime() ? 'not-allowed' : 'pointer';
+      })(),
+      nextDayDisabled: (() => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const cur = new Date(s.dataRef); cur.setHours(0,0,0,0);
+        return cur.getTime() >= today0.getTime();
+      })(),
+      nextDayColor: (() => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const cur = new Date(s.dataRef); cur.setHours(0,0,0,0);
+        return cur.getTime() >= today0.getTime() ? '#c1c9d8' : '#304869';
+      })(),
+      nextDayCursor: (() => {
+        const today0 = new Date(s.now); today0.setHours(0,0,0,0);
+        const cur = new Date(s.dataRef); cur.setHours(0,0,0,0);
+        return cur.getTime() >= today0.getTime() ? 'not-allowed' : 'pointer';
+      })(),
 
       calendarOpen: s.calendarOpen,
       toggleCalendar: () => this.setState(prev => ({
@@ -1008,25 +1131,27 @@ class Component extends DCLogic {
         const daysInMonth = new Date(y, m + 1, 0).getDate();
         const todayOnly2 = new Date(s.now); todayOnly2.setHours(0,0,0,0);
         const selRef = new Date(s.dataRef); selRef.setHours(0,0,0,0);
+        const minAllowed2 = s.filtroTurno === 'Noite' ? new Date(todayOnly2.getTime() - 86400000) : todayOnly2;
         const cells = [];
         for (let i = 0; i < firstWeekday; i++) cells.push({ label: '', disabled: true, bg: 'transparent', color: 'transparent', cursor: 'default', select: () => {} });
         for (let day = 1; day <= daysInMonth; day++) {
           const date = new Date(y, m, day);
-          const isFuture = date > todayOnly2;
+          // RN: nunca permite datas futuras; permite o dia da falta e, no noturno, também ontem.
+          const isBlocked = date.getTime() > todayOnly2.getTime() || date.getTime() < minAllowed2.getTime();
           const isSelected = date.getTime() === selRef.getTime();
           cells.push({
             label: String(day),
-            disabled: isFuture,
+            disabled: isBlocked,
             bg: isSelected ? '#183b56' : 'transparent',
-            color: isSelected ? '#fff' : (isFuture ? '#c1c9d8' : '#304869'),
-            cursor: isFuture ? 'not-allowed' : 'pointer',
+            color: isSelected ? '#fff' : (isBlocked ? '#c1c9d8' : '#304869'),
+            cursor: isBlocked ? 'not-allowed' : 'pointer',
             select: () => this.setState({ dataRef: date, calendarOpen: false })
           });
         }
         return cells;
       })(),
-      prazoLabel: globalExpired ? ('Prazo encerrado em ' + fmtDate(deadline)) : ('Prazo de acionamento até ' + fmtDate(deadline)),
-      prazoLabelColor: globalExpired ? '#8397a6' : '#118f28',
+      prazoLabel: 'O alerta é do dia da falta · Noturno: falta de ontem permanece visível até 23h59 de hoje',
+      prazoLabelColor: '#55585d',
       atualizadoLabel: fmtDateTime(new Date(s.now)),
 
       countFalta: counts.falta, countTurmasSemLancamento: turmasSemLancamento.length, countDL: counts.dl, countAcionado: counts.acionado,
@@ -1044,8 +1169,12 @@ class Component extends DCLogic {
       filtroTurma: s.filtroTurma,
       onFiltroTurma: (e) => this.setState({ filtroTurma: e.target.value, page: 1 }),
       turmaOptions,
+      filtroEnsino: s.filtroEnsino,
+      onFiltroEnsino: (e) => this.setState({ filtroEnsino: e.target.value, filtroTurno: '', filtroTurma: 'todos', page: 1 }),
+      ensinoOptions: ENSINO_OPTIONS,
+      filtroEnsinoBorder: s.filtroEnsino ? '#c1c9d8' : '#e53239',
       filtroTurno: s.filtroTurno,
-      onFiltroTurno: (e) => this.setState({ filtroTurno: e.target.value, page: 1 }),
+      onFiltroTurno: (e) => this.setState({ filtroTurno: e.target.value, filtroTurma: 'todos', page: 1 }),
       turnoOptions,
 
       page: currentPage,
@@ -1076,29 +1205,27 @@ class Component extends DCLogic {
         this.setState({ loteOpen: true, loteActive: true, loteQueue: loteEligibleIds, loteIndex: 0, loteAcionados: 0, lotePulados: 0 });
       },
 
-      hasRows: rows.length > 0,
-      hasNoRows: rows.length === 0,
+      turnoRequired: !s.filtroTurno || !s.filtroEnsino,
+      filtrosPendentesLabel: !s.filtroEnsino && !s.filtroTurno
+        ? 'Selecione o tipo de ensino e o turno para buscar os alertas de falta diária.'
+        : (!s.filtroEnsino ? 'Selecione o tipo de ensino para buscar os alertas de falta diária.' : 'Selecione o turno para buscar os alertas de falta diária.'),
+      filtroTurnoBorder: s.filtroTurno ? '#c1c9d8' : '#e53239',
+      hasRows: rows.length > 0 && !!s.filtroTurno && !!s.filtroEnsino,
+      hasNoRows: rows.length === 0 && !!s.filtroTurno && !!s.filtroEnsino,
       rows,
 
       modalOpen: !!modalStudent,
-      modalNome: modalStudent ? modalStudent.nome : '',
+      modalNome: modalStudent ? nomeExibicao(modalStudent) : '',
       modalTurma: modalStudent ? modalStudent.turma : '',
       modalTurno: modalStudent ? modalStudent.turno : '',
+      modalEnsino: modalStudent ? modalStudent.ensino : '',
       modalData: modalDataStr,
       modalContatos,
       modalMensagem,
       fecharModal: () => this.setState({ modalId: null }),
+      toastOpen: !!s.toast,
+      toastMessage: s.toast || '',
       confirmarAcionamento: () => { if (modalStudent) doAcionar(modalStudent.id, 'Individual'); this.setState({ modalId: null }); },
-
-      desfazerOpen: !!s.desfazerId,
-      fecharDesfazer: () => this.setState({ desfazerId: null }),
-      confirmarDesfazer: () => {
-        const id = s.desfazerId;
-        this.setState(prev => ({
-          students: prev.students.map(x => x.id === id ? { ...x, alertStatus: 'pendente', acionadoAt: null } : x),
-          desfazerId: null
-        }));
-      },
 
       loteOpen: !!s.loteOpen,
       loteInProgress: s.loteActive && s.loteIndex < s.loteQueue.length,
@@ -1106,7 +1233,7 @@ class Component extends DCLogic {
       loteIndexLabel: Math.min(s.loteIndex+1, s.loteQueue.length),
       loteTotalLabel: s.loteQueue.length,
       loteProgressPct: s.loteQueue.length ? Math.round((s.loteIndex/s.loteQueue.length)*100)+'%' : '0%',
-      loteAtualNome: loteStudent ? loteStudent.nome : '',
+      loteAtualNome: loteStudent ? nomeExibicao(loteStudent) : '',
       loteAtualContato: loteStudent && loteStudent.telefones[0] ? (loteStudent.telefones[0].vinculo + ' — ' + loteStudent.telefones[0].nome + ' · ' + loteStudent.telefones[0].numero) : '',
       loteAcionados: s.loteAcionados,
       lotePulados: s.lotePulados,
